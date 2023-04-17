@@ -1,5 +1,5 @@
 package funcionario;
 
-public class Diretor extends Funcionario {
-
+public class Diretor extends Gerente {
+	private String relatorio;
 }
