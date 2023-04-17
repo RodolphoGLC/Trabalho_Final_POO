@@ -51,5 +51,20 @@ public abstract class Conta {
 		this.agencia = agencia;
 	}
 	
+	public void transferencia(Conta contaDestino, double valor){
+		if(this.saldo > valor && valor > 0){
+			System.out.println("Transferência concluída!");
+				this.saldo =- valor;
+				contaDestino.saldo =+ valor;
+			System.out.println("Seu saldo atual é de: " + this.saldo);
+		}
+		else {
+			System.out.println("Saldo insuficiente");
+		}
 	
+	
+	}
+	public void extratoConta() {
+		//Instanciar!!
+	}
 }
