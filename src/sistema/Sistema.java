@@ -2,8 +2,8 @@ package sistema;
 
 import interface_usuario.InterfaceUsuario;
 
-public class Sistema {
 
+public class Sistema {
 	public static void main(String[] args) {
 		
 		InterfaceUsuario iu = new InterfaceUsuario();
