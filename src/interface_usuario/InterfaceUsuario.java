@@ -1,7 +1,12 @@
 package interface_usuario;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
+import cliente.Cliente;
+import funcionario.Gerente;
+import funcionario.Presidente;
 
 public class InterfaceUsuario {
 	
@@ -11,9 +16,10 @@ public class InterfaceUsuario {
 		sc = new Scanner(System.in);
 	}
 
-	public String logar() {
+	public String logar(List<Cliente> listaCliente, List<Gerente> listaGerente, List<Presidente> listaPresidente) {
 
-		String cpf, senha;
+		String cpf, senha, tipoUsuario = "";
+		boolean senhaValida = false;
 		
 		System.out.println("-----Login-----");
 		System.out.println("Cpf:");
@@ -21,10 +27,32 @@ public class InterfaceUsuario {
 		System.out.println("Senha:");
 		senha = sc.next();
 		
-		//TODO
-		//fazer lógica para verificar que tipo de usuario é
-		//retornando 'cliente' só para teste
-		return "Diretor";
+		for(Cliente c : listaCliente) {
+			if(c.getCpf().equals(cpf) && c.getSenha().equals(senha)) {
+				tipoUsuario = "Cliente";
+				senhaValida = true;
+			}
+		}
+		
+		for(Gerente g : listaGerente) {
+			if(g.getCpf().equals(cpf) && g.getSenha().equals(senha)) {
+				tipoUsuario = "Gerente";
+				senhaValida = true;
+			}
+		}
+		
+		for(Presidente p : listaPresidente) {
+			if(p.getCpf().equals(cpf) && p.getSenha().equals(senha)) {
+				tipoUsuario = "Presidente";
+				senhaValida = true;
+			}
+		}
+		
+		if(!senhaValida) {
+			System.out.println("Senha ou usuário inválido.");
+		}
+		
+		return tipoUsuario;
 	}
 	
 	public int abrirMenu() {

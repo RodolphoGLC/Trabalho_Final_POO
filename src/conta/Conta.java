@@ -52,10 +52,10 @@ public abstract class Conta {
 	}
 	
 	public void transferencia(Conta contaDestino, double valor){
-		if(this.saldo > valor && valor > 0){
+		if(this.saldo > valor && valor > 0) {
 			System.out.println("Transferência concluída!");
-				this.saldo =- valor;
-				contaDestino.saldo =+ valor;
+			this.saldo =- valor;
+			contaDestino.saldo =+ valor;
 			System.out.println("Seu saldo atual é de: " + this.saldo);
 		}
 		else {

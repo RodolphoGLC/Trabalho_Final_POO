@@ -48,7 +48,6 @@ public class Leitor {
 				Presidente p = new Presidente();
 				p.setCpf(lista.get(0));
 				p.setSenha(lista.get(1));
-				p.setAgenciaResponsavel(Integer.parseInt(lista.get(2)));
 				listaPresidente.add(p);
 			}
 			else
