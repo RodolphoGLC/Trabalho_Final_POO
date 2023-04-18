@@ -1,8 +1,11 @@
-/conta/
-<<<<<<< HEAD
 /sistema/
+<<<<<<< HEAD
+/.gitignore
+/cliente/
 /funcionario/
-/dados/
-/io/
+/module-info.class
 =======
->>>>>>> ae4ea0821bf99fe78e103d01e5f2a6a045753d8d
+/dados/
+/conta/
+/interface_usuario/
+>>>>>>> 6e690619534875f877f2a1160cfb297d184f0183
