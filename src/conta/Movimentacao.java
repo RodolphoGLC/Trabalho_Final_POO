@@ -34,6 +34,10 @@ public class Movimentacao {
 	public String toString() {
 		return this.cpfCliente + " - " + this.getDescricao() + valorFormatado.format(valor) + " - " + this.getData();
 	}
+	
+	public String toStringTransferencia(Conta contaDestino) {
+		return this.cpfCliente + " - " + this.getDescricao() + valorFormatado.format(valor) + " - "  + contaDestino.getCpfTitular() + " - " + this.getData();
+	}
 
 	public String getCpfCliente() {
 		return cpfCliente;
