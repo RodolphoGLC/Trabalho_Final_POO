@@ -69,7 +69,7 @@ public class Sistema {
 			int opcMenu = iu.abrirMenu();
 			if(opcMenu == 1) {
 				//movimentacao gerente
-				opcMenu = iu.abrirMenuGerenteMovimentacao();
+				opcMenu = iu.abrirMenuFuncionarioMovimentacao();
 				switch(opcMenu) {
 					case 1: 
 						System.out.println("Saque");
@@ -97,10 +97,92 @@ public class Sistema {
 						System.out.println("Relatório rendimento");
 						break;
 					case 4:
-						System.out.println("Relatório no numero de contas");
+						System.out.println("Relatório no número de contas");
 				}
 			}
-		}
-	}
+		}else if (tipoUsuario == "Diretor") {
+			int opcMenu = iu.abrirMenu ();
+			if(opcMenu == 1) {
+				opcMenu = iu.abrirMenuFuncionarioMovimentacao (); 
+				switch(opcMenu) {
+				case 1:
+					System.out.println("Saque");
+					break;
+				case 2:
+					System.out.println("Depósito");
+					break;
+				case 3:
+					System.out.println("Transferência para outra conta");
+					break;
+				case 4:
+					System.out.println("Extrato da conta do cliente");
+				}
 
+			} else if (opcMenu == 2) {
+				 opcMenu = iu.abrirMenuDiretorRelatorio();
+				   
+				 switch (opcMenu) {
+				 case 1:
+					 System.out.println("Saldo");
+					 break;
+				 case 2:
+					 System.out.println("Relatório de Tributação");
+					 break;
+				 case 3:
+					 System.out.println("Relatório de Rendimento");
+					 break;
+				 case 4:
+					 System.out.println("Relatório no números de contas");
+					 break;
+				 case 5:
+					 System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
+				 }
+				 	 
+			} 
+
+		} else if (tipoUsuario == "Presidente") {
+			int opcMenu = iu.abrirMenu();
+		    if (opcMenu == 1) {
+		        opcMenu = iu.abrirMenuFuncionarioMovimentacao();
+		    	
+		    	switch (opcMenu) {
+		    	case 1:
+		    		System.out.println("Saque");
+		    		break;
+		    	case 2:
+		    		System.out.println("Depósito");
+		    		break;
+		    	case 3:
+		    		System.out.println("Transferência para outra conta");
+		    		break;
+		    	case 4: System.out.println("Extrato da conta do cliente");
+		    	}
+		    	
+		    	
+		} else if (opcMenu == 2) {
+			opcMenu = iu.abrirMenuRelatorioPresidente();
+			 switch (opcMenu) {
+			 case 1:
+				 System.out.println("Saldo");
+				 break;
+			 case 2:
+				 System.out.println("Relatório de Tributação");
+				 break;
+			 case 3:
+				 System.out.println("Relatório de Rendimento");
+				 break;
+			 case 4:
+				 System.out.println("Relatório no números de contas");
+				 break;
+			 case 5:
+				 System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
+			     break; 
+			 case 6:
+				 System.out.println("Relatório com o valor total capital armazenado no banco");
+			}
+		}
+		   
+		
+	}
+  }
 }
