@@ -5,22 +5,23 @@ import java.util.List;
 
 import cliente.Cliente;
 import dados.Leitor;
+import funcionario.Presidente;
 import interface_usuario.InterfaceUsuario;
 
 
 public class Sistema {
 	public static void main(String[] args) {
 		
-		//incialização dos funcionarios
-		List<Cliente> listaCliente = new ArrayList<>();
+		List<Presidente> listaPresidente = new ArrayList<>();
 		String pathDados = System.getProperty("user.dir") + "\\src\\dados\\";
 		
 		try {
-			Leitor.lerClientes(pathDados + "cliente.txt", listaCliente);
+			Leitor.lerPresidente(pathDados + "presidente.txt", listaPresidente);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		
+
 //		teste para ver se realmente carregou os clientes
 //		for(Cliente c : listaCliente) {
 //			System.out.println(c.getCpf());
@@ -118,7 +119,7 @@ public class Sistema {
 					System.out.println("Extrato da conta do cliente");
 				}
 
-			} else if (opcMenu == 2) {
+		} else if (opcMenu == 2) {
 				 opcMenu = iu.abrirMenuDiretorRelatorio();
 				   
 				 switch (opcMenu) {
@@ -137,7 +138,7 @@ public class Sistema {
 				 case 5:
 					 System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
 				 }
-				 	 
+			 
 			} 
 
 		} else if (tipoUsuario == "Presidente") {
