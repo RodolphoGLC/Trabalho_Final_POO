@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cliente.Cliente;
+import funcionario.Presidente;
 
 public class Leitor {
 
@@ -26,6 +27,29 @@ public class Leitor {
 				c.setCpf(lista.get(0));
 				c.setSenha(lista.get(1));
 				listaCliente.add(c);
+			}
+			else
+				break;
+		}
+
+		leitor.close();
+	}
+	
+	public static void lerPresidente(String path, List<Presidente> listaPresidente) throws IOException {
+
+		BufferedReader leitor = new BufferedReader(new FileReader(path));
+		String linha = "";
+		
+		while(true) {
+			linha = leitor.readLine();
+			
+			if(linha != null) {
+				List<String> lista = Arrays.asList(linha.split(","));
+				
+				Presidente p = new Presidente();
+				p.setCpf(lista.get(0));
+				p.setSenha(lista.get(1));
+				listaPresidente.add(p);
 			}
 			else
 				break;
