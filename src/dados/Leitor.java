@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import cliente.Cliente;
+import funcionario.Diretor;
 import funcionario.Gerente;
 import funcionario.Presidente;
 
@@ -73,6 +74,29 @@ public class Leitor {
 				g.setSenha(lista.get(1));
 				g.setAgenciaResponsavel(Integer.parseInt(lista.get(2)));
 				listaGerente.add(g);
+			}
+			else
+				break;
+		}
+
+		leitor.close();
+	}
+	public static void lerDiretor(String path, List<Diretor> listaDiretor) throws IOException {
+
+		BufferedReader leitor = new BufferedReader(new FileReader(path));
+		String linha = "";
+		
+		while(true) {
+			linha = leitor.readLine();
+			
+			if(linha != null) {
+				List<String> lista = Arrays.asList(linha.split(","));
+				
+				Diretor d = new Diretor();
+				d.setCpf(lista.get(0));
+				d.setSenha(lista.get(1));
+				d.setAgenciaResponsavel(Integer.parseInt(lista.get(2)));
+				listaDiretor.add(d);
 			}
 			else
 				break;

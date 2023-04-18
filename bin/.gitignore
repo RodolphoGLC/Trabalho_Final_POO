@@ -2,3 +2,7 @@
 /conta/
 /dados/
 /sistema/
+/.gitignore
+/cliente/
+/funcionario/
+/module-info.class
