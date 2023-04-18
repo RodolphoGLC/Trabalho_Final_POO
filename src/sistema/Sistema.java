@@ -1,13 +1,35 @@
 package sistema;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import cliente.Cliente;
+import dados.Leitor;
 import interface_usuario.InterfaceUsuario;
 
 
 public class Sistema {
 	public static void main(String[] args) {
 		
+		//incialização dos funcionarios
+		List<Cliente> listaCliente = new ArrayList<>();
+		String pathDados = System.getProperty("user.dir") + "\\src\\dados\\";
+		
+		try {
+			Leitor.lerClientes(pathDados + "cliente.txt", listaCliente);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+//		teste para ver se realmente carregou os clientes
+//		for(Cliente c : listaCliente) {
+//			System.out.println(c.getCpf());
+//		}
+		
 		InterfaceUsuario iu = new InterfaceUsuario();
-
+		
 		String tipoUsuario = iu.logar();
 		
 		if(tipoUsuario == "Cliente") {
