@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import cliente.Cliente;
+import conta.Movimentacao;
 import funcionario.Diretor;
 import funcionario.Gerente;
 import funcionario.Presidente;
@@ -103,4 +104,6 @@ public class Leitor {
 
 		leitor.close();
 	}
+	
+	
 }

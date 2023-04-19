@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cliente.Cliente;
+import conta.*;
 import dados.Leitor;
 import funcionario.Gerente;
 import funcionario.Presidente;
@@ -13,6 +14,16 @@ import interface_usuario.InterfaceUsuario;
 public class Sistema {
 	public static void main(String[] args) {
 		
+		Cliente c1 = new Cliente("123", "123");
+		Cliente c2 = new Cliente("122", "122");
+		Conta cc1 = new ContaCorrente(c1.getCpf(), 5000.0, 10, 1);
+		Conta cc2 = new ContaCorrente(c2.getCpf(), 5000.0, 10, 1);
+		
+		//cc1.sacar(500.0);
+		//cc1.depositar(200.0);
+		cc1.transferencia(cc2, 100.0);
+		
+		/*
 		List<Cliente> listaCliente = new ArrayList<>();
 		List<Gerente> listaGerente = new ArrayList<>();
 		List<Presidente> listaPresidente = new ArrayList<>();
@@ -181,8 +192,9 @@ public class Sistema {
 				 System.out.println("Relatório com o valor total capital armazenado no banco");
 			}
 		}
-		   
+		
 		
 	}
+	*/
   }
 }

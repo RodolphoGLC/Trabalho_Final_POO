@@ -1,11 +1,16 @@
 package conta;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import conta.Movimentacao;
+import dados.Leitor;
 
 public abstract class Conta {
 	private String cpfTitular;
@@ -29,13 +34,11 @@ public abstract class Conta {
 		}
 		
 		Movimentacao movimentacao = new Movimentacao(cpfTitular, "Saque: R$ ", valor);
-		
-		FileWriter arq;
+		String path = "src/dados/movimentacoes.txt";
 		try {
-			arq = new FileWriter("user.dir\\src\\dados\\movimentacoes.txt");
-			PrintWriter gravarArq = new PrintWriter(arq);
-		    gravarArq.printf(movimentacao.toString());
-		    gravarArq.close();
+			List<String> linhas = lerMovimentacao(path);
+			linhas.add(movimentacao.toString());
+			escreverMovimentacao(path, linhas);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -51,13 +54,11 @@ public abstract class Conta {
 		}
 		
 		Movimentacao movimentacao = new Movimentacao(cpfTitular, "Deposito: R$ ", valor);
-		
-		FileWriter arq;
+		String path = "src/dados/movimentacoes.txt";
 		try {
-			arq = new FileWriter("user.dir\\src\\dados\\movimentacoes.txt");
-			PrintWriter gravarArq = new PrintWriter(arq);
-		    gravarArq.printf(movimentacao.toString());
-		    gravarArq.close();
+			List<String> linhas = lerMovimentacao(path);
+			linhas.add(movimentacao.toString());
+			escreverMovimentacao(path, linhas);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -68,20 +69,17 @@ public abstract class Conta {
 			System.out.println("Transferência concluída!");
 				this.saldo =- valor;
 				contaDestino.saldo =+ valor;
-			System.out.println("Seu saldo atual é de: " + this.saldo);
 		}
 		else {
 			System.out.println("Saldo insuficiente");
 		}
 	
 		Movimentacao movimentacao = new Movimentacao(cpfTitular, "Transferiu: R$ ", valor);
-		
-		FileWriter arq;
+		String path = "src/dados/movimentacoes.txt";
 		try {
-			arq = new FileWriter("user.dir\\src\\dados\\movimentacoes.txt");
-			PrintWriter gravarArq = new PrintWriter(arq);
-		    gravarArq.printf(movimentacao.toStringTransferencia(contaDestino));
-		    gravarArq.close();
+			List<String> linhas = lerMovimentacao(path);
+			linhas.add(movimentacao.toStringTransferencia(contaDestino));
+			escreverMovimentacao(path, linhas);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -110,23 +108,30 @@ public abstract class Conta {
 		this.agencia = agencia;
 	}
 	
-<<<<<<< HEAD
-=======
-	public void transferencia(Conta contaDestino, double valor){
-		if(this.saldo > valor && valor > 0) {
-			System.out.println("Transferência concluída!");
-			this.saldo =- valor;
-			contaDestino.saldo =+ valor;
-			System.out.println("Seu saldo atual é de: " + this.saldo);
+	public static List<String> lerMovimentacao(String path) throws IOException {
+		List<String> linhas = new ArrayList<>();
+		BufferedReader leitor = new BufferedReader(new FileReader(path));
+		String linha = "";
+		
+		while(true) {
+			linha = leitor.readLine();
+			
+			if(linha != null) {
+				linhas.add(linha);
+			}
+			else
+				break;
 		}
-		else {
-			System.out.println("Saldo insuficiente");
+
+		leitor.close();
+		return linhas;
+	}
+	
+	public static void escreverMovimentacao(String path, List<String> linhas) throws IOException {
+		try (FileWriter escritor = new FileWriter(path)) {
+			for (String linha : linhas) {
+			    escritor.write(linha + "\n");
+			}
 		}
-	
-	
 	}
-	public void extratoConta() {
-		//Instanciar!!
-	}
->>>>>>> 641e4c9735cdee75c4ce35e6f081ddb9cdc38183
 }
