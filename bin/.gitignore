@@ -1,11 +1,3 @@
-/sistema/
-<<<<<<< HEAD
-/.gitignore
-/cliente/
 /funcionario/
-/module-info.class
-=======
-/dados/
 /conta/
-/interface_usuario/
->>>>>>> 6e690619534875f877f2a1160cfb297d184f0183
+/sistema/

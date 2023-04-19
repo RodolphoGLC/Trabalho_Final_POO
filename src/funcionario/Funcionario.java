@@ -3,7 +3,7 @@ package funcionario;
 public abstract class Funcionario {
 	private String cpf;
 	private String senha;
-	private int cargo; //Enum
+	private EnumFuncionario cargo; //Enum
 	
 	public String getCpf() {
 		return cpf;
@@ -16,12 +16,6 @@ public abstract class Funcionario {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	public enum FuncionariosEnum {
-		Funcionario,
-		Gerente,
-		Diretor,
-		Presidente;
 	}
 	public double getSaldo(double saldo) {
 		return saldo;

@@ -16,12 +16,21 @@ public abstract class Conta {
 	private String cpfTitular;
 	private double saldo;
 	private int agencia;
+	private EnumConta tipo;
 	
-	public Conta(String cpfTitular, double saldo, int agencia) {
+	public Conta(String cpfTitular, double saldo, int agencia, EnumConta tipo2) {
 		super();
 		this.cpfTitular = cpfTitular;
 		this.saldo = saldo;
 		this.agencia = agencia;
+	}
+	
+	public EnumConta getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(EnumConta tipo) {
+		this.tipo = tipo;
 	}
 	
 	public void sacar(double valor) {

@@ -16,8 +16,8 @@ public class Sistema {
 		
 		Cliente c1 = new Cliente("123", "123");
 		Cliente c2 = new Cliente("122", "122");
-		Conta cc1 = new ContaCorrente(c1.getCpf(), 5000.0, 10, 1);
-		Conta cc2 = new ContaCorrente(c2.getCpf(), 5000.0, 10, 1);
+		Conta cc1 = new ContaCorrente(c1.getCpf(), 5000.0, 10, EnumConta.ContaCorrente);
+		Conta cc2 = new ContaCorrente(c2.getCpf(), 5000.0, 10, EnumConta.ContaCorrente);
 		
 		//cc1.sacar(500.0);
 		//cc1.depositar(200.0);
