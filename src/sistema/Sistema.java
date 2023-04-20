@@ -1,5 +1,6 @@
 package sistema;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 
 import cliente.Cliente;
 import conta.Conta;
-import dados.Leitor;
+import dados.*;
 import enums.EnumUsuario;
 import funcionario.Funcionario;
 import interface_usuario.InterfaceUsuario;
@@ -81,7 +82,9 @@ public class Sistema {
 						opcMenu = iu.abrirMenuClienteMovimentacao();
 						switch(opcMenu) {
 						case 1: 
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado: ");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2: 
 							System.out.println("Digite o valor a ser depositado:");
@@ -107,6 +110,12 @@ public class Sistema {
 						switch(opcMenu) {
 						case 1: 
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 2: 
 							System.out.println("Relatório tributação");
@@ -128,7 +137,9 @@ public class Sistema {
 						opcMenu = iu.abrirMenuFuncionarioMovimentacao();
 						switch(opcMenu) {
 						case 1: 
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado:");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2: 
 							System.out.println("Digite o valor a ser depositado:");
@@ -153,6 +164,12 @@ public class Sistema {
 						switch(opcMenu) {
 						case 1: 
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 2: 
 							System.out.println("Relatório tributação");
@@ -175,7 +192,9 @@ public class Sistema {
 						opcMenu = iu.abrirMenuFuncionarioMovimentacao (); 
 						switch(opcMenu) {
 						case 1:
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado:");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2:
 							System.out.println("Digite o valor a ser depositado:");
@@ -201,6 +220,12 @@ public class Sistema {
 						switch (opcMenu) {
 						case 1:
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 2:
 							System.out.println("Relatório de Tributação");
@@ -233,7 +258,9 @@ public class Sistema {
 
 						switch (opcMenu) {
 						case 1:
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado:");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2:
 							System.out.println("Digite o valor a ser depositado:");
@@ -258,6 +285,12 @@ public class Sistema {
 						switch (opcMenu) {
 						case 1:
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 2:
 							System.out.println("Relatório de Tributação");
@@ -280,6 +313,7 @@ public class Sistema {
 				break;
 			case INVALIDO:
 				System.out.println("Senha ou usuário inválido.");
+				//break;
 		}
 	}
 }
