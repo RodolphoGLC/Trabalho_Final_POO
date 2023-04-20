@@ -14,6 +14,8 @@ public abstract class Conta {
 	private double saldo;
 	private int agencia;
 	private EnumConta tipo;
+	private int qtdSaqueDeposito;
+	private int qtdTransferencia;
 	
 	public Conta() {
 		
@@ -32,6 +34,41 @@ public abstract class Conta {
 
 	public void setTipo(EnumConta tipo) {
 		this.tipo = tipo;
+	}
+	
+	public String getCpfTitular() {
+		return cpfTitular;
+	}
+	public void setCpfTitular(String cpfTitular) {
+		this.cpfTitular = cpfTitular;
+	}
+	public double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	public int getAgencia() {
+		return agencia;
+	}
+	public void setAgencia(int agencia) {
+		this.agencia = agencia;
+	}
+	
+	public int getQtdSaqueDeposito() {
+		return qtdSaqueDeposito;
+	}
+
+	public void setQtdSaqueDeposito(int qtdSaqueDeposito) {
+		this.qtdSaqueDeposito = qtdSaqueDeposito;
+	}
+
+	public int getQtdTransferencia() {
+		return qtdTransferencia;
+	}
+
+	public void setQtdTransferencia(int qtdTransferencia) {
+		this.qtdTransferencia = qtdTransferencia;
 	}
 	
 	public void sacar(double valor) {
@@ -97,25 +134,6 @@ public abstract class Conta {
 	
 	public void extratoConta() {
 		//Instanciar!!
-	}
-	
-	public String getCpfTitular() {
-		return cpfTitular;
-	}
-	public void setCpfTitular(String cpfTitular) {
-		this.cpfTitular = cpfTitular;
-	}
-	public double getSaldo() {
-		return saldo;
-	}
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
-	public int getAgencia() {
-		return agencia;
-	}
-	public void setAgencia(int agencia) {
-		this.agencia = agencia;
 	}
 	
 	public static List<String> lerMovimentacao(String path) throws IOException {
