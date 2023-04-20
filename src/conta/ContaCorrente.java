@@ -1,19 +1,34 @@
 package conta;
 
+import enums.EnumConta;
+
 public class ContaCorrente extends Conta {
-	private int tipo; //Enum
 	
-	public ContaCorrente(String cpfTitular, double saldo, int agencia, int tipo) {
-		super(cpfTitular, saldo, agencia);
-		this.tipo = tipo;
+	private int qtdSaqueDeposito;
+	private int qtdTransferencia;
+	
+	public ContaCorrente() {
+		
+	}
+	
+	public ContaCorrente(String cpfTitular, double saldo, int agencia, EnumConta tipo) {
+		super(cpfTitular, saldo, agencia, tipo);
+	}
+	
+	public int getQtdSaqueDeposito() {
+		return qtdSaqueDeposito;
 	}
 
-	public int getTipo() {
-		return tipo;
+	public void setQtdSaqueDeposito(int qtdSaqueDeposito) {
+		this.qtdSaqueDeposito = qtdSaqueDeposito;
 	}
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+	public int getQtdTransferencia() {
+		return qtdTransferencia;
+	}
+
+	public void setQtdTransferencia(int qtdTransferencia) {
+		this.qtdTransferencia = qtdTransferencia;
 	}
 	
 	public void relatorioTributacao() {

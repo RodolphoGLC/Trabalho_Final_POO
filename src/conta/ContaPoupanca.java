@@ -2,20 +2,16 @@ package conta;
 
 import java.util.Scanner;
 
-public class ContaPoupanca extends Conta {
-	private int tipo; //Enum
-	
-	public ContaPoupanca(String cpfTitular, double saldo, int agencia, int tipo) {
-		super(cpfTitular, saldo, agencia);
-		this.tipo = tipo;
-	}
-	
-	public int getTipo() {
-		return tipo;
-	}
+import enums.EnumConta;
 
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
+public class ContaPoupanca extends Conta {
+	
+	public ContaPoupanca() {
+		
+	}
+	
+	public ContaPoupanca(String cpfTitular, double saldo, int agencia, EnumConta tipo) {
+		super(cpfTitular, saldo, agencia, tipo);
 	}
 	
 	public void relatorioRendimento() {

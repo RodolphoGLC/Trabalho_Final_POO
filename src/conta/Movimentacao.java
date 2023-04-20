@@ -4,24 +4,25 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.crypto.Data;
 
 public class Movimentacao {
-	DecimalFormat valorFormatado = new DecimalFormat("0,00");
+	
+	//DecimalFormat valorFormatado = new DecimalFormat("0,00");
 	private String cpfCliente;
 	private String descricao;
 	private String data;
 	private double valor;
-	
-	public Movimentacao() {
-		
-	}
+	private List<String> linhas = new ArrayList<>();
 	
 	public static String data() {
 		LocalDateTime data = LocalDateTime.now();
-		DateTimeFormatter formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+		DateTimeFormatter formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
 		String dataFormatada = data.format(formatada);
-		SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/YYYY - HH:mm");
-		return formatador.format(dataFormatada);
+		return dataFormatada;
 	}
 	
 	public Movimentacao(String cpfCliente, String descricao, Double valor) {
@@ -32,7 +33,11 @@ public class Movimentacao {
 	}
 	
 	public String toString() {
-		return this.cpfCliente + " - " + this.getDescricao() + valorFormatado.format(valor) + " - " + this.getData();
+		return this.cpfCliente + " - " + this.getDescricao() + valor + " - " + this.getData();
+	}
+	
+	public String toStringTransferencia(Conta contaDestino) {
+		return this.cpfCliente + " - " + this.getDescricao() + valor + " - "  + contaDestino.getCpfTitular() + " - " + this.getData();
 	}
 
 	public String getCpfCliente() {
@@ -52,7 +57,7 @@ public class Movimentacao {
 	}
 	
 	public String getData() {
-		return data;
+		return data();
 	}
 
 	public void setData(String data) {

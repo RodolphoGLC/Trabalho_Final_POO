@@ -4,6 +4,18 @@ public class Cliente {
 	private String cpf;
 	private String senha;
 	
+	
+	
+	public Cliente() {
+		
+	}
+
+	public Cliente(String cpf, String senha) {
+		super();
+		this.cpf = cpf;
+		this.senha = senha;
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}
