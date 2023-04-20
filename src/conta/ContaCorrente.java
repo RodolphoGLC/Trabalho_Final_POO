@@ -4,8 +4,6 @@ import enums.EnumConta;
 
 public class ContaCorrente extends Conta {
 	
-	private int qtdSaqueDeposito;
-	private int qtdTransferencia;
 	
 	public ContaCorrente() {
 		
@@ -13,22 +11,6 @@ public class ContaCorrente extends Conta {
 	
 	public ContaCorrente(String cpfTitular, double saldo, int agencia, EnumConta tipo) {
 		super(cpfTitular, saldo, agencia, tipo);
-	}
-	
-	public int getQtdSaqueDeposito() {
-		return qtdSaqueDeposito;
-	}
-
-	public void setQtdSaqueDeposito(int qtdSaqueDeposito) {
-		this.qtdSaqueDeposito = qtdSaqueDeposito;
-	}
-
-	public int getQtdTransferencia() {
-		return qtdTransferencia;
-	}
-
-	public void setQtdTransferencia(int qtdTransferencia) {
-		this.qtdTransferencia = qtdTransferencia;
 	}
 	
 	public void relatorioTributacao() {

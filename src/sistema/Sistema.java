@@ -9,7 +9,12 @@ import java.util.Scanner;
 
 import cliente.Cliente;
 import conta.Conta;
+<<<<<<< HEAD
 import dados.*;
+=======
+import dados.Escritor;
+import dados.Leitor;
+>>>>>>> 91eb8e0c4e6010eaebc828b0ee0564db5d749e92
 import enums.EnumUsuario;
 import funcionario.Funcionario;
 import interface_usuario.InterfaceUsuario;
@@ -60,12 +65,9 @@ public class Sistema {
 				usuarioValido = true;
 			}
 		}
-		
 
-//		if(usuarioValido) {
-//			//conta para ser usada nas operações
-			Conta conta = listaConta.get(cpf);
-//		}
+		//conta para ser usada nas operações
+		Conta conta = listaConta.get(cpf);
 
 		//menus
 		InterfaceUsuario iu = new InterfaceUsuario();
@@ -73,8 +75,7 @@ public class Sistema {
         double valor;
         
 		switch(tipoUsuario) { 
-			case CLIENTE:
-				
+			case CLIENTE:	
 				do {
 					opcMenu = iu.abrirMenu();
 					if(opcMenu == 1) {
@@ -95,10 +96,13 @@ public class Sistema {
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFtransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFtransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-						    valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							
 							break;
 						case 4: 
@@ -150,10 +154,13 @@ public class Sistema {
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-						    valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4: 
 							System.out.println("Extrato");
@@ -205,10 +212,13 @@ public class Sistema {
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-						    valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4:
 							System.out.println("Extrato da conta do cliente");
@@ -234,10 +244,13 @@ public class Sistema {
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-						    valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
@@ -271,10 +284,13 @@ public class Sistema {
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-							valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4: System.out.println("Extrato da conta do cliente");
 						}
@@ -314,6 +330,12 @@ public class Sistema {
 			case INVALIDO:
 				System.out.println("Senha ou usuário inválido.");
 				//break;
+		}
+		
+		try {
+			Escritor.salvarContas(pathDados + "conta.txt", listaConta);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 }

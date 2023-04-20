@@ -3,10 +3,16 @@ package dados;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Map;
 import java.util.Scanner;
 
+<<<<<<< HEAD
 import conta.*;
 import conta.Movimentacao;
+=======
+import conta.Conta;
+>>>>>>> 91eb8e0c4e6010eaebc828b0ee0564db5d749e92
 
 public class Escritor {
 
@@ -26,6 +32,7 @@ public class Escritor {
 		sc.close();
 	}
 	
+<<<<<<< HEAD
 	//Metodos para escrever os relatorios em arquivos
 	
 	public static void relatorioSaldo(Conta conta) throws IOException {
@@ -60,5 +67,28 @@ public class Escritor {
 	
 	public static void relatorioCapital() {
 		
+=======
+	public static void salvarContas(String path, Map<String,Conta> listaConta) throws IOException {
+		
+		BufferedWriter escritor = new BufferedWriter(new FileWriter(path));
+//		while(!linha.equals("sair")) {
+//			linha = sc.nextLine();
+//			if(!linha.equals("sair"))
+//				escritor.append(linha + "\n");
+//		}
+		
+		Collection<Conta> contas = listaConta.values(); 
+		
+		for(Conta c : contas ) {
+			escritor.append(c.getTipo().toString() + ",");
+			escritor.append(c.getCpfTitular() + ",");
+			escritor.append(Double.valueOf(c.getSaldo()).toString() + ",");
+			escritor.append(Integer.valueOf(c.getAgencia()).toString() + ",");
+			escritor.append(Integer.valueOf(c.getQtdSaqueDeposito()).toString() + ",");
+			escritor.append(Integer.valueOf(c.getQtdTransferencia()).toString() + "\n");
+		}
+		
+		escritor.close();
+>>>>>>> 91eb8e0c4e6010eaebc828b0ee0564db5d749e92
 	}
 }
