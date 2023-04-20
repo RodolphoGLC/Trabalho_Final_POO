@@ -22,7 +22,7 @@ public class Sistema {
 		List<Cliente> listaCliente = new ArrayList<>();
 		List<Funcionario> listaFuncionario = new ArrayList<>();
 		Map<String,Conta> listaConta = new HashMap<>();
-		String pathDados = System.getProperty("user.dir") + "\\src\\dados\\";
+		String pathDados = "src/dados/";
 
 		//incialização dos dados a partir dos txt
 		try {
