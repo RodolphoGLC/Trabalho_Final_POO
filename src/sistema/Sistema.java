@@ -62,26 +62,29 @@ public class Sistema {
 		
 		if(usuarioValido) {
 			//conta para ser usada nas operações
-			Conta conta = listaConta.get(cpf);
+			
 		}
-
+		Conta conta = listaConta.get(cpf);
 		//menus
 		InterfaceUsuario iu = new InterfaceUsuario();
 		int opcMenu;
 
 		switch(tipoUsuario) { 
 			case CLIENTE:
+				
 				do {
 					opcMenu = iu.abrirMenu();
 					if(opcMenu == 1) {
-						//movimentacao cliente
+						//movimentacaocliente
 						opcMenu = iu.abrirMenuClienteMovimentacao();
 						switch(opcMenu) {
 						case 1: 
 							System.out.println("Saque");
 							break;
 						case 2: 
-							System.out.println("Depositar");
+							System.out.println("Digite o valor a ser depositado:");
+							double valor = sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3: 
 							System.out.println("Transferência");
@@ -119,7 +122,9 @@ public class Sistema {
 							System.out.println("Saque");
 							break;
 						case 2: 
-							System.out.println("Depósito");
+							System.out.println("Digite o valor a ser depositado:");
+							double valor =sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3: 
 							System.out.println("Transferência");
@@ -158,7 +163,9 @@ public class Sistema {
 							System.out.println("Saque");
 							break;
 						case 2:
-							System.out.println("Depósito");
+							System.out.println("Digite o valor a ser depositado:");
+							double valor = sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3:
 							System.out.println("Transferência para outra conta");
@@ -202,7 +209,9 @@ public class Sistema {
 							System.out.println("Saque");
 							break;
 						case 2:
-							System.out.println("Depósito");
+							System.out.println("Digite o valor a ser depositado:");
+							double valor = sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3:
 							System.out.println("Transferência para outra conta");
