@@ -60,15 +60,17 @@ public class Sistema {
 			}
 		}
 		
-		if(usuarioValido) {
-			//conta para ser usada nas operações
-			
-		}
-		Conta conta = listaConta.get(cpf);
+
+//		if(usuarioValido) {
+//			//conta para ser usada nas operações
+			Conta conta = listaConta.get(cpf);
+//		}
+
 		//menus
 		InterfaceUsuario iu = new InterfaceUsuario();
 		int opcMenu;
-
+        double valor;
+        
 		switch(tipoUsuario) { 
 			case CLIENTE:
 				
@@ -83,11 +85,18 @@ public class Sistema {
 							break;
 						case 2: 
 							System.out.println("Digite o valor a ser depositado:");
-							double valor = sc.nextDouble();
+							valor = sc.nextDouble();
 							conta.depositar(valor);
 							break;
 						case 3: 
-							System.out.println("Transferência");
+							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
+							String CPFtransferencia = sc.next();
+							Conta contaTransferencia = listaConta.get(CPFtransferencia);
+							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
+							System.out.println("Qual valor desejado para realizar a transferência?");
+						    valor = sc.nextDouble();
+							conta.transferir(contaTransferencia, valor);
+							
 							break;
 						case 4: 
 							System.out.println("Extrato");
@@ -123,11 +132,17 @@ public class Sistema {
 							break;
 						case 2: 
 							System.out.println("Digite o valor a ser depositado:");
-							double valor =sc.nextDouble();
+							valor =sc.nextDouble();
 							conta.depositar(valor);
 							break;
 						case 3: 
-							System.out.println("Transferência");
+							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
+							String CPFTransferencia = sc.next();
+							Conta contaTransferencia = listaConta.get(CPFTransferencia);
+							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
+							System.out.println("Qual valor desejado para realizar a transferência?");
+						    valor = sc.nextDouble();
+							conta.transferir(contaTransferencia, valor);
 							break;
 						case 4: 
 							System.out.println("Extrato");
@@ -164,11 +179,17 @@ public class Sistema {
 							break;
 						case 2:
 							System.out.println("Digite o valor a ser depositado:");
-							double valor = sc.nextDouble();
+							valor = sc.nextDouble();
 							conta.depositar(valor);
 							break;
 						case 3:
-							System.out.println("Transferência para outra conta");
+							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
+							String CPFTransferencia = sc.next();
+							Conta contaTransferencia = listaConta.get(CPFTransferencia);
+							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
+							System.out.println("Qual valor desejado para realizar a transferência?");
+						    valor = sc.nextDouble();
+							conta.transferir(contaTransferencia, valor);
 							break;
 						case 4:
 							System.out.println("Extrato da conta do cliente");
@@ -185,7 +206,13 @@ public class Sistema {
 							System.out.println("Relatório de Tributação");
 							break;
 						case 3:
-							System.out.println("Relatório de Rendimento");
+							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
+							String CPFTransferencia = sc.next();
+							Conta contaTransferencia = listaConta.get(CPFTransferencia);
+							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
+							System.out.println("Qual valor desejado para realizar a transferência?");
+						    valor = sc.nextDouble();
+							conta.transferir(contaTransferencia, valor);
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
@@ -210,11 +237,17 @@ public class Sistema {
 							break;
 						case 2:
 							System.out.println("Digite o valor a ser depositado:");
-							double valor = sc.nextDouble();
+						    valor = sc.nextDouble();
 							conta.depositar(valor);
 							break;
 						case 3:
-							System.out.println("Transferência para outra conta");
+							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
+							String CPFTransferencia = sc.next();
+							Conta contaTransferencia = listaConta.get(CPFTransferencia);
+							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
+							System.out.println("Qual valor desejado para realizar a transferência?");
+							valor = sc.nextDouble();
+							conta.transferir(contaTransferencia, valor);
 							break;
 						case 4: System.out.println("Extrato da conta do cliente");
 						}

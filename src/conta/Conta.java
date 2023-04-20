@@ -1,16 +1,12 @@
 package conta;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import conta.Movimentacao;
-import dados.Leitor;
 import enums.EnumConta;
 
 public abstract class Conta {
@@ -78,11 +74,11 @@ public abstract class Conta {
 		}
 	}
 	
-	public void transferencia(Conta contaDestino, double valor){
+	public void transferir (Conta contaDestino, double valor){
 		if(this.saldo > valor && valor > 0){
 			System.out.println("Transferência concluída!");
-				this.saldo =- valor;
-				contaDestino.saldo =+ valor;
+				this.saldo -= valor;
+				contaDestino.saldo += valor;
 		}
 		else {
 			System.out.println("Saldo insuficiente");
@@ -136,9 +132,9 @@ public abstract class Conta {
 			else
 				break;
 		}
-
 		leitor.close();
 		return linhas;
+
 	}
 	
 	public static void escreverMovimentacao(String path, List<String> linhas) throws IOException {
