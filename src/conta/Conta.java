@@ -11,12 +11,17 @@ import java.util.List;
 
 import conta.Movimentacao;
 import dados.Leitor;
+import enums.EnumConta;
 
 public abstract class Conta {
 	private String cpfTitular;
 	private double saldo;
 	private int agencia;
 	private EnumConta tipo;
+	
+	public Conta() {
+		
+	}
 	
 	public Conta(String cpfTitular, double saldo, int agencia, EnumConta tipo2) {
 		super();

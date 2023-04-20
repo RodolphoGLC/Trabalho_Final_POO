@@ -5,9 +5,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import cliente.Cliente;
-import conta.Movimentacao;
+import conta.Conta;
+import conta.ContaCorrente;
+import conta.ContaPoupanca;
+import enums.EnumConta;
+import enums.EnumUsuario;
 import funcionario.Diretor;
+import funcionario.Funcionario;
 import funcionario.Gerente;
 import funcionario.Presidente;
 
@@ -36,7 +43,7 @@ public class Leitor {
 		leitor.close();
 	}
 	
-	public static void lerPresidente(String path, List<Presidente> listaPresidente) throws IOException {
+	public static void lerPresidente(String path, List<Funcionario> listaPresidente) throws IOException {
 
 		BufferedReader leitor = new BufferedReader(new FileReader(path));
 		String linha = "";
@@ -50,6 +57,7 @@ public class Leitor {
 				Presidente p = new Presidente();
 				p.setCpf(lista.get(0));
 				p.setSenha(lista.get(1));
+				p.setCargo(EnumUsuario.valueOf(lista.get(2)));
 				listaPresidente.add(p);
 			}
 			else
@@ -58,7 +66,7 @@ public class Leitor {
 
 		leitor.close();
 	}
-	public static void lerGerente(String path, List<Gerente> listaGerente) throws IOException {
+	public static void lerGerente(String path, List<Funcionario> listaGerente) throws IOException {
 
 		BufferedReader leitor = new BufferedReader(new FileReader(path));
 		String linha = "";
@@ -73,6 +81,7 @@ public class Leitor {
 				g.setCpf(lista.get(0));
 				g.setSenha(lista.get(1));
 				g.setAgenciaResponsavel(Integer.parseInt(lista.get(2)));
+				g.setCargo(EnumUsuario.valueOf(lista.get(3)));
 				listaGerente.add(g);
 			}
 			else
@@ -81,7 +90,8 @@ public class Leitor {
 
 		leitor.close();
 	}
-	public static void lerDiretor(String path, List<Diretor> listaDiretor) throws IOException {
+	
+	public static void lerDiretor(String path, List<Funcionario> listaDiretor) throws IOException {
 
 		BufferedReader leitor = new BufferedReader(new FileReader(path));
 		String linha = "";
@@ -96,6 +106,7 @@ public class Leitor {
 				d.setCpf(lista.get(0));
 				d.setSenha(lista.get(1));
 				d.setAgenciaResponsavel(Integer.parseInt(lista.get(2)));
+				d.setCargo(EnumUsuario.valueOf(lista.get(3)));
 				listaDiretor.add(d);
 			}
 			else
@@ -105,5 +116,42 @@ public class Leitor {
 		leitor.close();
 	}
 	
-	
+	public static void lerConta(String path, Map<String,Conta> listaConta) throws IOException {
+
+		BufferedReader leitor = new BufferedReader(new FileReader(path));
+		String linha = "";
+		
+		while(true) {
+			linha = leitor.readLine();
+			
+			if(linha != null) {
+				List<String> lista = Arrays.asList(linha.split(","));
+				
+				if(lista.get(0).equals("CONTACORRENTE")) {
+					ContaCorrente conta = new ContaCorrente();
+					conta.setTipo(EnumConta.valueOf(lista.get(0)));
+					conta.setCpfTitular(lista.get(1));
+					conta.setSaldo(Double.parseDouble(lista.get(2)));
+					conta.setAgencia(Integer.parseInt(lista.get(3)));
+					conta.setQtdSaqueDeposito(Integer.parseInt(lista.get(4)));
+					conta.setQtdTransferencia(Integer.parseInt(lista.get(5)));
+					
+					
+					listaConta.put(conta.getCpfTitular(), conta);
+				} else if(lista.get(0).equals("CONTAPOUPANCA")) {
+					ContaPoupanca conta = new ContaPoupanca();
+					conta.setTipo(EnumConta.valueOf(lista.get(0)));
+					conta.setCpfTitular(lista.get(1));
+					conta.setSaldo(Double.parseDouble(lista.get(2)));
+					conta.setAgencia(Integer.parseInt(lista.get(3)));
+					
+					listaConta.put(conta.getCpfTitular(), conta);
+				}
+			}
+			else
+				break;
+		}
+
+		leitor.close();
+	}
 }

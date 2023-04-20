@@ -2,7 +2,13 @@ package conta;
 
 import java.util.Scanner;
 
+import enums.EnumConta;
+
 public class ContaPoupanca extends Conta {
+	
+	public ContaPoupanca() {
+		
+	}
 	
 	public ContaPoupanca(String cpfTitular, double saldo, int agencia, EnumConta tipo) {
 		super(cpfTitular, saldo, agencia, tipo);

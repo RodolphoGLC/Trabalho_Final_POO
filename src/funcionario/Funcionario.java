@@ -1,9 +1,11 @@
 package funcionario;
 
+import enums.EnumUsuario;
+
 public abstract class Funcionario {
 	private String cpf;
 	private String senha;
-	private EnumFuncionario cargo; //Enum
+	private EnumUsuario cargo; //Enum
 	
 	public String getCpf() {
 		return cpf;
@@ -20,5 +22,12 @@ public abstract class Funcionario {
 	public double getSaldo(double saldo) {
 		return saldo;
 	}
+	public EnumUsuario getCargo() {
+		return cargo;
+	}
+	public void setCargo(EnumUsuario cargo) {
+		this.cargo = cargo;
+	}
+	
 }
 
