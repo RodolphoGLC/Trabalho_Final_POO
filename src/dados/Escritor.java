@@ -20,18 +20,23 @@ public class Escritor {
 	}
 	
 	//Metodos para escrever os relatorios em arquivos
-	public static void relatorioSaldo(Conta conta) throws IOException {
-		String inicio = "O seu saldo é de R$ ";
-		System.out.println(inicio + conta.getSaldo());
+	public static void escreverRelatorio(String texto) throws IOException {
 		
 		//Fazer o arquivo pela hora ()
 		String path = "./src/relatorios/" + Movimentacao.dataRelatorios() + ".txt";
 		try (BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path, true));) {
-			buffWrite.write(inicio + conta.getSaldo());
+			buffWrite.write(texto);
 			buffWrite.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void relatorioSaldo(Conta conta) throws IOException {
+		String textoRelatorio = "O seu saldo é de R$ " + conta.getSaldo();
+		System.out.println(textoRelatorio);
+		
+		escreverRelatorio(textoRelatorio);
 	}
 	
 	public static void relatorioTributacao() {
