@@ -222,6 +222,12 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no número de contas");
+							try {
+								Escritor.relatorioNumeroContas(conta.getAgencia());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 				}while(opcMenu != 0);
@@ -388,7 +394,12 @@ public class Sistema {
 							System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
 							break; 
 						case 6:
-							System.out.println("Relatório com o valor total capital armazenado no banco");
+							try {
+								Escritor.relatorioCapital(listaConta);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							
 						}
 					}
 				}while(opcMenu != 0);
