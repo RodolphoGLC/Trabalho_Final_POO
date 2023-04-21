@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -38,8 +39,8 @@ public class Escritor {
 	public static void relatorioSaldo(Conta conta) throws IOException {
 		String textoRelatorio = "O seu saldo é de R$ " + conta.getSaldo();
 		System.out.println(textoRelatorio);
-		
 		escreverRelatorio(textoRelatorio, "RS_");
+
 	}
 	
 	public static void relatorioTributacao(ContaCorrente conta) throws IOException {
@@ -47,13 +48,9 @@ public class Escritor {
 		double tributacaoTotal;
 		String textoTributacao= "";
 		DecimalFormat df = new DecimalFormat("0.00");
-		//loop de leitura
-		//	Ver quantas de cada transacao e armazenar na variavel
 		
-		//Fazer as contas com base nas taxas e nas quantidades
 		tributacaoTotal = (qSaquesDepositos * 0.1) + (qTransferencia * 0.2);
 		
-		//Retornando String para usar na classe Escritor
 		textoTributacao = "--------------------------------------\n" + 
 						  "1.Valor total das transações R$ " + df.format(tributacaoTotal) + "\n\n" +
 						  "2.Para cada saque será cobrado o valor de R$0.10\n" +
@@ -61,11 +58,30 @@ public class Escritor {
 						  "4.Para cada transferência será cobrado o valor de R$0.20\n"+
 						  "--------------------------------------";
 		System.out.println(textoTributacao);
-		escreverRelatorio(textoTributacao, "T_");
+		 escreverRelatorio(textoTributacao,"RT_");
 	}
 	
-	public static void relatorioRendimento() {
+	public static void relatorioRendimento(ContaPoupanca conta) throws IOException {
+		double dias, rendimento;
+		String textoRendimento = "";
+		DecimalFormat df = new DecimalFormat("0.00");
 		
+		Scanner sc = new Scanner(System.in);
+
+		dias = sc.nextDouble();
+		dias = Math.floor(dias/30);
+		
+		rendimento = dias * 0.1;
+		
+		textoRendimento = "--------------------------------------\n" +
+						  "  Rendimento total      \n" +
+				          "    R$: " + df.format(rendimento)+"\n" +
+				          "  Saldo pós rendimentos      \n" +
+				          "    R$: " + df.format(conta.getSaldo() + rendimento)+"\n" +
+				          "--------------------------------------\n";
+		
+		System.out.println(textoRendimento);
+		escreverRelatorio(textoRendimento,"RR_");
 	}
 	
 	public static void relatorioNumeroContas(Integer idAgencia) throws IOException {
@@ -96,8 +112,16 @@ public class Escritor {
 		
 	}
 	
-	public static void relatorioCapital() {
-	
+	public static void relatorioCapital(Map<String,Conta> listaConta) throws IOException {
+		Collection<Conta> contas = listaConta.values(); 
+	    double totalSaldo = 0; 
+	    for(Conta c : contas) {
+	    	totalSaldo += c.getSaldo();
+	    	
+	    }
+	    String textoRelatorio = "O total de capital no Banco é de R$"+ totalSaldo; 
+	    System.out.println(textoRelatorio);
+	    escreverRelatorio(textoRelatorio, "RC_");
 	}
 	
 	public static void salvarContas(String path, Map<String,Conta> listaConta) throws IOException {

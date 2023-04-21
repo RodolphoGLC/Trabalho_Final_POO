@@ -13,6 +13,7 @@ public class ContaCorrente extends Conta {
 		super(cpfTitular, saldo, agencia, tipo);
 	}
 	
+	/*Passei para o Escritor
 	public String relatorioTributacao() {
 		int qSaquesDepositos = this.getQtdSaqueDeposito(), qTransferencia = this.getQtdTransferencia();
 		double tributacaoTotal;
@@ -33,5 +34,5 @@ public class ContaCorrente extends Conta {
 						  "4.Para cada transferência será cobrado o valor de R$0.20\n"+
 						  "--------------------------------------";
 		return textoTributacao;
-	}
+	}*/
 }
