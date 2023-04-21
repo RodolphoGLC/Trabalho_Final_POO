@@ -20,7 +20,14 @@ public class Movimentacao {
 	
 	public static String data() {
 		LocalDateTime data = LocalDateTime.now();
-		DateTimeFormatter formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
+		DateTimeFormatter formatada = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
+		String dataFormatada = data.format(formatada);
+		return dataFormatada;
+	}
+	
+	public static String dataRelatorios() {
+		LocalDateTime data = LocalDateTime.now();
+		DateTimeFormatter formatada = DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm_ss");
 		String dataFormatada = data.format(formatada);
 		return dataFormatada;
 	}

@@ -1,5 +1,6 @@
 package sistema;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +9,13 @@ import java.util.Scanner;
 
 import cliente.Cliente;
 import conta.Conta;
+import conta.ContaCorrente;
+import dados.Escritor;
 import dados.Leitor;
+import enums.EnumConta;
 import enums.EnumUsuario;
 import funcionario.Funcionario;
-import interface_usuario.InterfaceUsuario;
+import menus.Menu;
 
 
 public class Sistema {
@@ -21,7 +25,7 @@ public class Sistema {
 		List<Cliente> listaCliente = new ArrayList<>();
 		List<Funcionario> listaFuncionario = new ArrayList<>();
 		Map<String,Conta> listaConta = new HashMap<>();
-		String pathDados = System.getProperty("user.dir") + "\\src\\dados\\";
+		String pathDados = "src/dados/";
 
 		//incialização dos dados a partir dos txt
 		try {
@@ -59,38 +63,44 @@ public class Sistema {
 				usuarioValido = true;
 			}
 		}
-		
-//		if(usuarioValido) {
-//			//conta para ser usada nas operações
-			Conta conta = listaConta.get(cpf);
-//		}
+
+		//conta para ser usada nas operações
+		Conta conta = listaConta.get(cpf);
 
 		//menus
-		InterfaceUsuario iu = new InterfaceUsuario();
+		Menu menu = new Menu();
 		int opcMenu;
-
+        double valor;
+        
 		switch(tipoUsuario) { 
-			case CLIENTE:
+			case CLIENTE:	
 				do {
-					opcMenu = iu.abrirMenu();
+					opcMenu = menu.abrirMenu();
 					if(opcMenu == 1) {
-						//movimentacao cliente
-						opcMenu = iu.abrirMenuClienteMovimentacao();
+						//movimentacaocliente
+						opcMenu = menu.abrirMenuClienteMovimentacao();
 						switch(opcMenu) {
 						case 1: 
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado: ");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2: 
-							System.out.println("Depositar");
+							System.out.println("Digite o valor a ser depositado:");
+							valor = sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3: 
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFtransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFtransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-							double valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							
 							break;
 						case 4: 
@@ -98,13 +108,26 @@ public class Sistema {
 						}
 					} else if(opcMenu == 2) {
 						//relatorios cliente
-						opcMenu = iu.abrirMenuClienteRelatorios();
+						opcMenu = menu.abrirMenuClienteRelatorios();
 						switch(opcMenu) {
 						case 1: 
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 							break;
 						case 2: 
 							System.out.println("Relatório tributação");
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								
+								try {
+									Escritor.relatorioTributacao((ContaCorrente)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
 							break;
 						case 3: 
 							System.out.println("Relatório rendimento");
@@ -117,39 +140,60 @@ public class Sistema {
 				
 			case GERENTE: 
 				do {
-					opcMenu = iu.abrirMenu();
+					opcMenu = menu.abrirMenu();
 					if(opcMenu == 1) {
 						//movimentacao gerente
-						opcMenu = iu.abrirMenuFuncionarioMovimentacao();
+						opcMenu = menu.abrirMenuFuncionarioMovimentacao();
 						switch(opcMenu) {
 						case 1: 
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado:");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2: 
-							System.out.println("Depósito");
+							System.out.println("Digite o valor a ser depositado:");
+							valor =sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3: 
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-							double valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4: 
 							System.out.println("Extrato");
 						}
 					} else if(opcMenu == 2) {
 						//relatorios gerente
-						opcMenu = iu.abrirMenuGerenteRelatorios();
+						opcMenu = menu.abrirMenuGerenteRelatorios();
 						switch(opcMenu) {
 						case 1: 
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 							break;
 						case 2: 
 							System.out.println("Relatório tributação");
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								
+								try {
+									Escritor.relatorioTributacao((ContaCorrente)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
 							break;
+						
 						case 3: 
 							System.out.println("Relatório rendimento");
 							break;
@@ -163,47 +207,70 @@ public class Sistema {
 				
 			case DIRETOR:
 				do {
-					opcMenu = iu.abrirMenu();
+					opcMenu = menu.abrirMenu();
 					if(opcMenu == 1) {
-						opcMenu = iu.abrirMenuFuncionarioMovimentacao (); 
+						opcMenu = menu.abrirMenuFuncionarioMovimentacao (); 
 						switch(opcMenu) {
 						case 1:
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado:");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2:
-							System.out.println("Depósito");
+							System.out.println("Digite o valor a ser depositado:");
+							valor = sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3:
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-							double valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4:
 							System.out.println("Extrato da conta do cliente");
 						}
 
 					} else if (opcMenu == 2) {
-						opcMenu = iu.abrirMenuDiretorRelatorio();
+						opcMenu = menu.abrirMenuDiretorRelatorio();
 
 						switch (opcMenu) {
 						case 1:
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 							break;
 						case 2:
-							System.out.println("Relatório de Tributação");
+							System.out.println("Relatório tributação");
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								
+								try {
+									Escritor.relatorioTributacao((ContaCorrente)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
 							break;
 						case 3:
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-							double valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
@@ -218,38 +285,59 @@ public class Sistema {
 				
 			case PRESIDENTE:
 				do {
-					opcMenu = iu.abrirMenu();
+					opcMenu = menu.abrirMenu();
 					if (opcMenu == 1) {
-						opcMenu = iu.abrirMenuFuncionarioMovimentacao();
+						opcMenu = menu.abrirMenuFuncionarioMovimentacao();
 
 						switch (opcMenu) {
 						case 1:
-							System.out.println("Saque");
+							System.out.println("Digite o valor a ser sacado:");
+							valor = sc.nextDouble();
+							conta.sacar(valor);
 							break;
 						case 2:
-							System.out.println("Depósito");
+							System.out.println("Digite o valor a ser depositado:");
+						    valor = sc.nextDouble();
+							conta.depositar(valor);
 							break;
 						case 3:
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							System.out.println("Saldo anterior: " + conta.getSaldo()+ " "+ contaTransferencia.getSaldo());
-							System.out.println("Qual valor desejado para realizar a transferência?");
-							double valor = sc.nextDouble();
-							conta.transferir(contaTransferencia, valor);
+							if(contaTransferencia != null) {
+								System.out.println("Qual valor desejado para realizar a transferência?");
+							    valor = sc.nextDouble();
+								conta.transferir(contaTransferencia, valor);
+							}else {
+								System.out.println("Conta não encontrada.");
+							}
 							break;
 						case 4: System.out.println("Extrato da conta do cliente");
 						}
 
 
 					} else if (opcMenu == 2) {
-						opcMenu = iu.abrirMenuRelatorioPresidente();
+						opcMenu = menu.abrirMenuRelatorioPresidente();
 						switch (opcMenu) {
 						case 1:
 							System.out.println("Saldo");
+							try {
+								Escritor.relatorioSaldo(conta);
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 2:
 							System.out.println("Relatório de Tributação");
+							System.out.println("Relatório tributação");
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								try {
+									Escritor.relatorioTributacao((ContaCorrente)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
 							break;
 						case 3:
 							System.out.println("Relatório de Rendimento");
@@ -269,6 +357,13 @@ public class Sistema {
 				break;
 			case INVALIDO:
 				System.out.println("Senha ou usuário inválido.");
+				//break;
+		}
+		
+		try {
+			Escritor.salvarContas(pathDados + "conta.txt", listaConta);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 }

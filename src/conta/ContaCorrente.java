@@ -4,8 +4,6 @@ import enums.EnumConta;
 
 public class ContaCorrente extends Conta {
 	
-	private int qtdSaqueDeposito;
-	private int qtdTransferencia;
 	
 	public ContaCorrente() {
 		
@@ -15,36 +13,25 @@ public class ContaCorrente extends Conta {
 		super(cpfTitular, saldo, agencia, tipo);
 	}
 	
-	public int getQtdSaqueDeposito() {
-		return qtdSaqueDeposito;
-	}
-
-	public void setQtdSaqueDeposito(int qtdSaqueDeposito) {
-		this.qtdSaqueDeposito = qtdSaqueDeposito;
-	}
-
-	public int getQtdTransferencia() {
-		return qtdTransferencia;
-	}
-
-	public void setQtdTransferencia(int qtdTransferencia) {
-		this.qtdTransferencia = qtdTransferencia;
-	}
-	
-	public void relatorioTributacao() {
-		int qSaques = 0, qDepositos = 0, qTransferencia = 0;
+	public String relatorioTributacao() {
+		int qSaquesDepositos = this.getQtdSaqueDeposito(), qTransferencia = this.getQtdTransferencia();
 		double tributacaoTotal;
+		String textoTributacao= "";
 		
 		//loop de leitura
 		//	Ver quantas de cada transacao e armazenar na variavel
 		
 		//Fazer as contas com base nas taxas e nas quantidades
-		tributacaoTotal = (qSaques * 0.1) + (qDepositos * 0.1) + (qTransferencia * 0.2);
+		tributacaoTotal = (qSaquesDepositos * 0.1) + (qTransferencia * 0.2);
 		
-		//Escrita em tela do relatorio
-		System.out.println("--------------------------------------");
-		System.out.println("      Valor total das transações      ");
-		System.out.println("       R$: " + Math.round(tributacaoTotal));
-		System.out.println("--------------------------------------");
+		//Retornando String para usar na classe Escritor
+		textoTributacao = "--------------------------------------\n" + 
+						  "      1.Valor total das transações     \n" +
+				          "       R$: " + Math.round(tributacaoTotal) +"\n" +
+						  "2.Para cada saque será cobrado o valor de R$0.10\n" +
+						  "3.Para cada depósito será cobrado o valor de R$0.10\n"+
+						  "4.Para cada transferência será cobrado o valor de R$0.20\n"+
+						  "--------------------------------------";
+		return textoTributacao;
 	}
 }
