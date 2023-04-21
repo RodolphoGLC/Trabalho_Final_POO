@@ -3,6 +3,7 @@ package dados;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -153,5 +154,24 @@ public class Leitor {
 		}
 
 		leitor.close();
+	}
+	
+	public static List<String> lerMovimentacao(String path) throws IOException {
+		List<String> linhas = new ArrayList<>();
+		BufferedReader leitor = new BufferedReader(new FileReader(path));
+		String linha = "";
+		
+		while(true) {
+			linha = leitor.readLine();
+			
+			if(linha != null) {
+				linhas.add(linha);
+			}
+			else
+				break;
+		}
+		leitor.close();
+		return linhas;
+
 	}
 }
