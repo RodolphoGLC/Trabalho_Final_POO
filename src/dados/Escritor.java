@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -55,8 +56,16 @@ public class Escritor {
 		
 	}
 	
-	public static void relatorioCapital() {
-	
+	public static void relatorioCapital(Map<String,Conta> listaConta) throws IOException {
+		Collection<Conta> contas = listaConta.values(); 
+	    double totalSaldo = 0; 
+	    for(Conta c : contas) {
+	    	totalSaldo += c.getSaldo();
+	    	
+	    }
+	    String textoRelatorio = "O total de capital no Banco é de R$"+ totalSaldo; 
+	    System.out.println(textoRelatorio);
+	    escreverRelatorio(textoRelatorio);
 	}
 	
 	public static void salvarContas(String path, Map<String,Conta> listaConta) throws IOException {

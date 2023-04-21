@@ -349,7 +349,12 @@ public class Sistema {
 							System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
 							break; 
 						case 6:
-							System.out.println("Relatório com o valor total capital armazenado no banco");
+							try {
+								Escritor.relatorioCapital(listaConta);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+							
 						}
 					}
 				}while(opcMenu != 0);
