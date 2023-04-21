@@ -35,16 +35,17 @@ public class Escritor {
 	public static void relatorioSaldo(Conta conta) throws IOException {
 		String textoRelatorio = "O seu saldo é de R$ " + conta.getSaldo();
 		System.out.println(textoRelatorio);
-		
 		escreverRelatorio(textoRelatorio);
 	}
 	
 	public static void relatorioTributacao(ContaCorrente conta) throws IOException {
 		 System.out.println(conta.relatorioTributacao());
+		 escreverRelatorio(conta.relatorioTributacao());
 	}
 	
-	public static void relatorioRendimento() {
-		
+	public static void relatorioRendimento(ContaPoupanca conta) throws IOException {
+		System.out.println(conta.relatorioRendimento());
+		escreverRelatorio(conta.relatorioRendimento());
 	}
 	
 	public static void relatorioNumeroContas() {

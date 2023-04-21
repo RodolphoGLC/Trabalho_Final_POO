@@ -14,9 +14,10 @@ public class ContaPoupanca extends Conta {
 		super(cpfTitular, saldo, agencia, tipo);
 	}
 	
-	public void relatorioRendimento() {
+	public String relatorioRendimento() {
 		double dias;
 		double rendimento;
+		String textoRendimento = "";
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -31,11 +32,12 @@ public class ContaPoupanca extends Conta {
 		rendimento = dias * 0.1;
 		
 		//Escrita em tela do relatorio
-		System.out.println("--------------------------------------");
-		System.out.println("      Rendimento total      ");
-		System.out.println("       R$: " + Math.round(rendimento));
-		System.out.println("      Saldo pós rendimentos      ");
-		System.out.println("       R$: " + Math.round(this.getSaldo() + rendimento));
-		System.out.println("--------------------------------------");
-	}
+		textoRendimento = "--------------------------------------\n" +
+						  "      Rendimento total      \n" +
+				          "       R$: " + Math.round(rendimento)+"\n" +
+				          "      Saldo pós rendimentos      \n" +
+				          "       R$: " + Math.round(this.getSaldo() + rendimento)+"\n" +
+				          "--------------------------------------\n";
+		return textoRendimento;
+			}
 }

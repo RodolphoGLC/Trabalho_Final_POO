@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-
 import cliente.Cliente;
 import conta.Conta;
 import conta.ContaCorrente;
+import conta.ContaPoupanca;
 import dados.Escritor;
 import dados.Leitor;
 import enums.EnumConta;
@@ -121,16 +121,26 @@ public class Sistema {
 						case 2: 
 							System.out.println("Relatório tributação");
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
-								
 								try {
 									Escritor.relatorioTributacao((ContaCorrente)conta);
 								} catch (IOException e) {
 									e.printStackTrace();
 								}
+							} else {
+								System.out.println("Esta conta não é uma conta corrente");
 							}
 							break;
 						case 3: 
 							System.out.println("Relatório rendimento");
+							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
+								try {
+									Escritor.relatorioRendimento((ContaPoupanca)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							} else {
+								System.out.println("Esta conta não é uma conta poupança");
+							}
 							break;
 						}
 					}
@@ -192,10 +202,23 @@ public class Sistema {
 									e.printStackTrace();
 								}
 							}
+							else {
+								System.out.println("Esta conta não é uma conta corrente");
+							}
 							break;
 						
 						case 3: 
 							System.out.println("Relatório rendimento");
+							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
+								try {
+									Escritor.relatorioRendimento((ContaPoupanca)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+							else {
+								System.out.println("Esta conta não é uma conta poupança");
+							}
 							break;
 						case 4:
 							System.out.println("Relatório no número de contas");
@@ -259,17 +282,21 @@ public class Sistema {
 									e.printStackTrace();
 								}
 							}
+							else {
+								System.out.println("Esta conta não é uma conta corrente");
+							}
 							break;
 						case 3:
-							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
-							String CPFTransferencia = sc.next();
-							Conta contaTransferencia = listaConta.get(CPFTransferencia);
-							if(contaTransferencia != null) {
-								System.out.println("Qual valor desejado para realizar a transferência?");
-							    valor = sc.nextDouble();
-								conta.transferir(contaTransferencia, valor);
-							}else {
-								System.out.println("Conta não encontrada.");
+							System.out.println("Relatório rendimento");
+							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
+								try {
+									Escritor.relatorioRendimento((ContaPoupanca)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+							else {
+								System.out.println("Esta conta não é uma conta poupança");
 							}
 							break;
 						case 4:
@@ -324,12 +351,11 @@ public class Sistema {
 							try {
 								Escritor.relatorioSaldo(conta);
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
+								
 								e.printStackTrace();
 							}
 							break;
 						case 2:
-							System.out.println("Relatório de Tributação");
 							System.out.println("Relatório tributação");
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
 								try {
@@ -338,9 +364,22 @@ public class Sistema {
 									e.printStackTrace();
 								}
 							}
+							else {
+								System.out.println("Esta conta não é uma conta corrente");
 							break;
+							}
 						case 3:
 							System.out.println("Relatório de Rendimento");
+							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
+								try {
+									Escritor.relatorioRendimento((ContaPoupanca)conta);
+								} catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+							else {
+								System.out.println("Esta conta não é uma conta poupança");
+							}
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");

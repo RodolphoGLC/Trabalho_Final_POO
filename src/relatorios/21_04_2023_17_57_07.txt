@@ -1,0 +1,7 @@
+--------------------------------------
+      1.Valor total das transações     
+       R$: 0
+2.Para cada saque será cobrado o valor de R$0.10
+3.Para cada depósito será cobrado o valor de R$0.10
+4.Para cada transferência será cobrado o valor de R$0.20
+--------------------------------------
