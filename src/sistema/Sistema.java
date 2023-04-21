@@ -199,6 +199,12 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no número de contas");
+							try {
+								Escritor.relatorioNumeroContas(conta.getAgencia());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 				}while(opcMenu != 0);
