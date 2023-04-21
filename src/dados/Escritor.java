@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,25 @@ public class Escritor {
 	}
 	
 	public static void relatorioTributacao(ContaCorrente conta) throws IOException {
-		 System.out.println(conta.relatorioTributacao());
+		int qSaquesDepositos = conta.getQtdSaqueDeposito(), qTransferencia = conta.getQtdTransferencia();
+		double tributacaoTotal;
+		String textoTributacao= "";
+		DecimalFormat df = new DecimalFormat("0.00");
+		//loop de leitura
+		//	Ver quantas de cada transacao e armazenar na variavel
+		
+		//Fazer as contas com base nas taxas e nas quantidades
+		tributacaoTotal = (qSaquesDepositos * 0.1) + (qTransferencia * 0.2);
+		
+		//Retornando String para usar na classe Escritor
+		textoTributacao = "--------------------------------------\n" + 
+						  "1.Valor total das transações R$ " + df.format(tributacaoTotal) + "\n\n" +
+						  "2.Para cada saque será cobrado o valor de R$0.10\n" +
+						  "3.Para cada depósito será cobrado o valor de R$0.10\n"+
+						  "4.Para cada transferência será cobrado o valor de R$0.20\n"+
+						  "--------------------------------------";
+		System.out.println(textoTributacao);
+		escreverRelatorio(textoTributacao, "T_");
 	}
 	
 	public static void relatorioRendimento() {

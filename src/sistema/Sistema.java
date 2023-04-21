@@ -280,6 +280,12 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
+							try {
+								Escritor.relatorioNumeroContas(conta.getAgencia());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 5:
 							System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
@@ -336,7 +342,6 @@ public class Sistema {
 							break;
 						case 2:
 							System.out.println("Relatório de Tributação");
-							System.out.println("Relatório tributação");
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
 								try {
 									Escritor.relatorioTributacao((ContaCorrente)conta);
@@ -350,6 +355,12 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
+							try {
+								Escritor.relatorioNumeroContas(conta.getAgencia());
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							break;
 						case 5:
 							System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
