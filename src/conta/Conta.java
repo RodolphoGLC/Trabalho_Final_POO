@@ -2,7 +2,6 @@ package conta;
 
 import java.io.IOException;
 import java.util.List;
-
 import dados.Escritor;
 import dados.Leitor;
 import enums.EnumConta;

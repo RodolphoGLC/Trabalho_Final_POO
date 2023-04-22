@@ -185,7 +185,7 @@ public class Escritor {
 			continua = 0;
 		}
 		
-		if(continua == 01) {
+		if(continua == 1) {
 			System.out.println("Você já possui seguro de vida");
 		}
 		else {

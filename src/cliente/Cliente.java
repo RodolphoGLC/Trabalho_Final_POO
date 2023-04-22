@@ -40,6 +40,8 @@ public class Cliente implements Comparable<Cliente>{
 		this.nome = nome;
 	}
 	
+	//Ordenar em ordem alfabetica.
+	
 	@Override
 	public int compareTo(Cliente c) {
 		int compare = this.nome.compareTo(c.getNome());

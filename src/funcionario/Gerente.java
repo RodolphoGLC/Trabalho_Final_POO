@@ -11,7 +11,5 @@ public class Gerente extends Funcionario{
 	public void setAgenciaResponsavel(int agenciaResponsavel) {
 		this.agenciaResponsavel = agenciaResponsavel;
 	}
-	public void relatorioNumeroContaAgencia() {
-		// Fazer depois.
-	}
+	
 }
