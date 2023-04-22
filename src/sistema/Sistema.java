@@ -19,7 +19,7 @@ import menus.Menu;
 
 
 public class Sistema {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		//criação das listas para armazaenamento dos dados
 		List<Cliente> listaCliente = new ArrayList<>();
@@ -105,6 +105,10 @@ public class Sistema {
 							break;
 						case 4: 
 							System.out.println("Extrato");
+						case 6:
+							System.out.println("Seguro de Vida");
+							Escritor.seguroVidaContratar((ContaCorrente)conta);
+							break;
 						}
 					} else if(opcMenu == 2) {
 						//relatorios cliente

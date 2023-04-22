@@ -59,6 +59,7 @@ public class Menu {
 			System.out.println("3.Transferência para outra conta");
 			System.out.println("4.Extrato da Conta");
 			System.out.println("5.Voltar");
+			System.out.println("6.Seguro Vida");
 			System.out.println("--------------------------------");
 			System.out.println("Digite o numero da sua escolha: ");
 			
@@ -81,6 +82,8 @@ public class Menu {
 					return 4;
 				case 5:
 					break;
+				case 6:
+					return 6;
 				default: 
 					System.out.println("Entrada inválida. \nTente de novo.");
 					try {

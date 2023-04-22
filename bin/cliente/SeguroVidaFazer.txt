@@ -1,0 +1,19 @@
+1º Criação da classe seguro de vida
+	Passar as informações _ V
+	
+2° Criar um metodo de leitura das informações de seguro de vida e do valor
+	Terá de criar 2 novas variaveis na conta em todas as vezes que aparecer _ V
+	
+3° Adicionar uma opção no menu para exibir as opções de seguro de vida
+	Criar um seguro de vida
+		Se já existir dizer que já existe
+			Verificar na Conta.txt se existe o texto SV e o Valor como parametros 
+		Se não existir
+			Perguntar o velor do seguro de vida
+				Descontar do Saldo o valor de 20% 
+				Reescrever o novo saldo da conta
+				Escrever as informações do seguro de vida
+				
+4° Caso tiver seguro de vida
+	Ao exibir relatório de tributação, terá de informar o valor do seguro
+		Somente caso os valores forem diferentes de null

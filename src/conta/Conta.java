@@ -14,6 +14,9 @@ public abstract class Conta {
 	private EnumConta tipo;
 	private int qtdSaqueDeposito;
 	private int qtdTransferencia;
+	private String sv;
+	private double tributoSeguro;
+	
 	
 	public Conta() {
 		
@@ -67,6 +70,19 @@ public abstract class Conta {
 
 	public void setQtdTransferencia(int qtdTransferencia) {
 		this.qtdTransferencia = qtdTransferencia;
+	}
+	
+	public String getSv() {
+		return sv;
+	}
+	public void setSv(String sv) {
+		this.sv = sv;
+	}
+	public double getTributoSeguro() {
+		return tributoSeguro;
+	}
+	public void setTributoSeguro(double tributoSeguro) {
+		this.tributoSeguro = tributoSeguro;
 	}
 	
 	public void sacar(double valor) {

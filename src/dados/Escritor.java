@@ -124,6 +124,47 @@ public class Escritor {
 	    escreverRelatorio(textoRelatorio, "RC_");
 	}
 	
+	public static void seguroVidaContratar(ContaCorrente conta) {
+		Scanner sc = new Scanner(System.in);
+		//Verificar se a conta possui seguro vida
+		String verificar = conta.getSv();
+		int continua = 1;
+		
+		if(verificar == "sv") {
+			continua = 0;
+		}
+		
+		if(continua == 01) {
+			System.out.println("Você já possui seguro de vida");
+		}
+		else {
+			System.out.println("Deseja contatar um seguro de vida?\n  1 - Sim\n  2 - Não");
+			int seguro = sc.nextInt();
+			if(seguro == 1) {
+				System.out.println("Qual valor você deseja contratar para seguro");
+				double valor = sc.nextDouble();
+					if(valor > 0 && conta.getSaldo() > valor*0.2) {
+						conta.setSv("SV");
+						conta.setTributoSeguro(valor*0.2);
+						conta.setSaldo(conta.getSaldo() - (valor*0.2));
+						String textoSV = conta.getCpfTitular() + " você criou um seguro de vida";
+						System.out.println(textoSV);
+						try {
+							escreverRelatorio(textoSV,"SV_");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					else {
+						System.out.println("Não é possivel contratar o seguro de vida");
+					}
+			}
+			else {
+				System.out.println("Tudo bem, espero que na próxima vc queira contratar");
+			}
+		}
+	}
+	
 	public static void salvarContas(String path, Map<String,Conta> listaConta) throws IOException {
 		
 		BufferedWriter escritor = new BufferedWriter(new FileWriter(path));
@@ -136,7 +177,9 @@ public class Escritor {
 			escritor.append(Double.valueOf(c.getSaldo()).toString() + ",");
 			escritor.append(Integer.valueOf(c.getAgencia()).toString() + ",");
 			escritor.append(Integer.valueOf(c.getQtdSaqueDeposito()).toString() + ",");
-			escritor.append(Integer.valueOf(c.getQtdTransferencia()).toString() + "\n");
+			escritor.append(Integer.valueOf(c.getQtdTransferencia()).toString() + ",");
+			escritor.append(c.getSv() + ",");
+			escritor.append(Double.valueOf(c.getTributoSeguro()).toString() + "\n");
 		}
 		
 		escritor.close();

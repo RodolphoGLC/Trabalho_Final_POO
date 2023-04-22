@@ -136,7 +136,8 @@ public class Leitor {
 					conta.setAgencia(Integer.parseInt(lista.get(3)));
 					conta.setQtdSaqueDeposito(Integer.parseInt(lista.get(4)));
 					conta.setQtdTransferencia(Integer.parseInt(lista.get(5)));
-					
+					conta.setSv(lista.get(6));
+					conta.setTributoSeguro(Double.parseDouble(lista.get(7)));
 					
 					listaConta.put(conta.getCpfTitular(), conta);
 				} else if(lista.get(0).equals("CONTAPOUPANCA")) {
