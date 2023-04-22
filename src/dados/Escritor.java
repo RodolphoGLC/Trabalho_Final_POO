@@ -68,8 +68,13 @@ public class Escritor {
 		textoTributacao += "---------------------------------------------------\n" + 
 						  "1.Valor total gasto em operações: R$ " + df.format(tributacaoTotal) + "\n" 
 						  + "\ta.Total de saques/depositos: " + conta.getQtdSaqueDeposito() 
-						  + "\n\tb.Total de transferências: " + conta.getQtdTransferencia() + "\n\n" +
-						  "2.Para cada saque será cobrado o valor de R$0.10\n" +
+						  + "\n\tb.Total de transferências: " + conta.getQtdTransferencia();
+		
+		if(conta.getSv().equals("sv")) {
+			textoTributacao	+= "\n\tc.Tributação do seguro: " + conta.getTributoSeguro();
+		}
+		
+		textoTributacao	+= "\n\n2.Para cada saque será cobrado o valor de R$0.10\n" +
 						  "3.Para cada depósito será cobrado o valor de R$0.10\n"+
 						  "4.Para cada transferência será cobrado o valor de R$0.20\n"+
 						  "---------------------------------------------------";
@@ -175,7 +180,7 @@ public class Escritor {
 	    escreverRelatorio(textoRelatorio, "RC_");
 	}
 	
-	public static void seguroVidaContratar(ContaCorrente conta) {
+	public static void seguroVidaContratar(Conta conta) {
 		Scanner sc = new Scanner(System.in);
 		//Verificar se a conta possui seguro vida
 		String verificar = conta.getSv();
@@ -195,7 +200,7 @@ public class Escritor {
 				System.out.println("Qual valor você deseja contratar para seguro");
 				double valor = sc.nextDouble();
 					if(valor > 0 && conta.getSaldo() > valor*0.2) {
-						conta.setSv("SV");
+						conta.setSv("sv");
 						conta.setTributoSeguro(valor*0.2);
 						conta.setSaldo(conta.getSaldo() - (valor*0.2));
 						String textoSV = conta.getCpfTitular() + " você criou um seguro de vida";
@@ -211,7 +216,7 @@ public class Escritor {
 					}
 			}
 			else {
-				System.out.println("Tudo bem, espero que na próxima vc queira contratar");
+				System.out.println("Tudo bem, espero que na próxima você queira contratar");
 			}
 		}
 	}
@@ -239,11 +244,11 @@ public class Escritor {
 	private static void imprimeRelatorio(String textoRelatorio) {
 		System.out.println("\n\n\n\n\n\n\n");
 		System.out.println(textoRelatorio);
-		System.out.println("\n\n\n\n\n\n\n");
 		try {
 			TimeUnit.SECONDS.sleep(3);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("\n\n\n\n\n\n\n");
 	}
 }

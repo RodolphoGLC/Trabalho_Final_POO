@@ -74,7 +74,7 @@ public class Sistema {
 				do {
 					opcMenu = menu.abrirMenu();
 					if(opcMenu == 1) {
-						//movimentacaocliente
+						//movimentacao cliente
 						opcMenu = menu.abrirMenuClienteMovimentacao();
 						switch(opcMenu) {
 						case 1: 
@@ -104,9 +104,11 @@ public class Sistema {
 							System.out.println("Extrato");
 						case 5:
 							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar((ContaCorrente)conta);
+							Escritor.seguroVidaContratar(conta);
 							break;
 						}
+						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
+						
 					} else if(opcMenu == 2) {
 						//relatorios cliente
 						opcMenu = menu.abrirMenuClienteRelatorios();
@@ -173,6 +175,7 @@ public class Sistema {
 							Escritor.seguroVidaContratar((ContaCorrente)conta);
 							break;
 						}
+						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
 						
 					} else if(opcMenu == 2) {
 						//relatorios gerente
@@ -244,6 +247,7 @@ public class Sistema {
 							Escritor.seguroVidaContratar((ContaCorrente)conta);
 							break;
 						}
+						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
 
 					} else if (opcMenu == 2) {
 						opcMenu = menu.abrirMenuDiretorRelatorio();
@@ -320,7 +324,7 @@ public class Sistema {
 							Escritor.seguroVidaContratar((ContaCorrente)conta);
 							break;
 						}
-
+						Escritor.salvarContas(pathDados + "conta.txt", listaConta);	
 
 					} else if (opcMenu == 2) {
 						opcMenu = menu.abrirMenuRelatorioPresidente();
