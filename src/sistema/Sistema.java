@@ -19,7 +19,7 @@ import menus.Menu;
 
 
 public class Sistema {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		//criação das listas para armazaenamento dos dados
 		List<Cliente> listaCliente = new ArrayList<>();
@@ -41,7 +41,6 @@ public class Sistema {
 		//login
 		String cpf, senha;
 		EnumUsuario tipoUsuario = EnumUsuario.INVALIDO;
-		boolean usuarioValido = false;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("-----Login-----");
@@ -53,14 +52,12 @@ public class Sistema {
 		for(Cliente c : listaCliente) {
 			if(c.getCpf().equals(cpf) && c.getSenha().equals(senha)) {
 				tipoUsuario = EnumUsuario.CLIENTE;
-				usuarioValido = true;
 			}
 		}
 		
 		for(Funcionario f : listaFuncionario) {
 			if(f.getCpf().equals(cpf) && f.getSenha().equals(senha)) {
 				tipoUsuario = f.getCargo();
-				usuarioValido = true;
 			}
 		}
 
@@ -112,20 +109,12 @@ public class Sistema {
 						switch(opcMenu) {
 						case 1: 
 							System.out.println("Saldo");
-							try {
-								Escritor.relatorioSaldo(conta);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+							Escritor.relatorioSaldo(conta);
 							break;
 						case 2: 
 							System.out.println("Relatório tributação");
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
-								try {
-									Escritor.relatorioTributacao((ContaCorrente)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioTributacao((ContaCorrente)conta);
 							} else {
 								System.out.println("Esta conta não é uma conta corrente");
 							}
@@ -133,11 +122,7 @@ public class Sistema {
 						case 3: 
 							System.out.println("Relatório rendimento");
 							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
-								try {
-									Escritor.relatorioRendimento((ContaPoupanca)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioRendimento((ContaPoupanca)conta);
 							} else {
 								System.out.println("Esta conta não é uma conta poupança");
 							}
@@ -162,7 +147,7 @@ public class Sistema {
 							break;
 						case 2: 
 							System.out.println("Digite o valor a ser depositado:");
-							valor =sc.nextDouble();
+							valor = sc.nextDouble();
 							conta.depositar(valor);
 							break;
 						case 3: 
@@ -184,23 +169,13 @@ public class Sistema {
 						//relatorios gerente
 						opcMenu = menu.abrirMenuGerenteRelatorios();
 						switch(opcMenu) {
-						case 1: 
-							System.out.println("Saldo");
-							try {
-								Escritor.relatorioSaldo(conta);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+						case 1:
+							Escritor.relatorioSaldo(conta);
 							break;
 						case 2: 
 							System.out.println("Relatório tributação");
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
-								
-								try {
-									Escritor.relatorioTributacao((ContaCorrente)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioTributacao((ContaCorrente)conta);
 							}
 							else {
 								System.out.println("Esta conta não é uma conta corrente");
@@ -210,11 +185,7 @@ public class Sistema {
 						case 3: 
 							System.out.println("Relatório rendimento");
 							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
-								try {
-									Escritor.relatorioRendimento((ContaPoupanca)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioRendimento((ContaPoupanca)conta);
 							}
 							else {
 								System.out.println("Esta conta não é uma conta poupança");
@@ -222,12 +193,7 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no número de contas");
-							try {
-								Escritor.relatorioNumeroContas(conta.getAgencia());
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							Escritor.relatorioNumeroContas(conta.getAgencia());
 						}
 					}
 				}while(opcMenu != 0);
@@ -272,21 +238,12 @@ public class Sistema {
 						switch (opcMenu) {
 						case 1:
 							System.out.println("Saldo");
-							try {
-								Escritor.relatorioSaldo(conta);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+							Escritor.relatorioSaldo(conta);
 							break;
 						case 2:
 							System.out.println("Relatório tributação");
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
-								
-								try {
-									Escritor.relatorioTributacao((ContaCorrente)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioTributacao((ContaCorrente)conta);
 							}
 							else {
 								System.out.println("Esta conta não é uma conta corrente");
@@ -295,11 +252,7 @@ public class Sistema {
 						case 3:
 							System.out.println("Relatório rendimento");
 							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
-								try {
-									Escritor.relatorioRendimento((ContaPoupanca)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioRendimento((ContaPoupanca)conta);
 							}
 							else {
 								System.out.println("Esta conta não é uma conta poupança");
@@ -307,15 +260,10 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
-							try {
-								Escritor.relatorioNumeroContas(conta.getAgencia());
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							Escritor.relatorioNumeroContas(conta.getAgencia());
 							break;
 						case 5:
-							System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
+							Escritor.relatorioInformacoesAlfabetica(listaCliente, listaConta);
 						}
 					}
 				}while(opcMenu != 0);
@@ -360,22 +308,13 @@ public class Sistema {
 						switch (opcMenu) {
 						case 1:
 							System.out.println("Saldo");
-							try {
-								Escritor.relatorioSaldo(conta);
-							} catch (IOException e) {
-								
-								e.printStackTrace();
-							}
+							Escritor.relatorioSaldo(conta);
 							break;
 						case 2:
 							System.out.println("Relatório de Tributação");
 							
 							if(conta.getTipo() == EnumConta.CONTACORRENTE){
-								try {
-									Escritor.relatorioTributacao((ContaCorrente)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioTributacao((ContaCorrente)conta);
 							}
 							else {
 								System.out.println("Esta conta não é uma conta corrente");
@@ -384,11 +323,7 @@ public class Sistema {
 						case 3:
 							System.out.println("Relatório de Rendimento");
 							if(conta.getTipo() == EnumConta.CONTAPOUPANCA){
-								try {
-									Escritor.relatorioRendimento((ContaPoupanca)conta);
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+								Escritor.relatorioRendimento((ContaPoupanca)conta);
 							}
 							else {
 								System.out.println("Esta conta não é uma conta poupança");
@@ -396,22 +331,13 @@ public class Sistema {
 							break;
 						case 4:
 							System.out.println("Relatório no números de contas");
-							try {
-								Escritor.relatorioNumeroContas(conta.getAgencia());
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							Escritor.relatorioNumeroContas(conta.getAgencia());
 							break;
 						case 5:
-							System.out.println("Relatório com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
+							Escritor.relatorioInformacoesAlfabetica(listaCliente, listaConta);
 							break; 
 						case 6:
-							try {
-								Escritor.relatorioCapital(listaConta);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
+							Escritor.relatorioCapital(listaConta);
 							
 						}
 					}
@@ -420,9 +346,9 @@ public class Sistema {
 				break;
 			case INVALIDO:
 				System.out.println("Senha ou usuário inválido.");
-				//break;
 		}
 		
+		//para salvar a lista de conta atualizada no arquivo conta.txt
 		try {
 			Escritor.salvarContas(pathDados + "conta.txt", listaConta);
 		} catch (Exception e) {

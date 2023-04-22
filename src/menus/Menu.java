@@ -21,7 +21,7 @@ public class Menu {
 			System.out.println("1.Movimentação na Conta");
 			System.out.println("2.Relatórios");
 			System.out.println("0.Sair");
-			System.out.println("-----------------------");
+			System.out.println("---------------");
 			System.out.println("Digite o numero da sua escolha: ");
 			
 			opcEntrada = sc.next();
@@ -256,7 +256,7 @@ public class Menu {
 			System.out.println("2.Relatório de Tributação da Conta Corrente:");
 			System.out.println("3.Relatório de Rendimento da Poupança:");
 			System.out.println("4.Relatório de Número de Contas da Agência");
-			System.out.println("5.Relatórios com as informações de Nome e CPF");
+			System.out.println("5.Relatórios com as informações de cliente (Nome,CPF,Agência)");
 			System.out.println("6.Voltar");
 			System.out.println("---------------------");
 
@@ -302,12 +302,12 @@ public class Menu {
 		int opc;
 
 		do {
-			System.out.println("-----------Relatórios-------------");
+			System.out.println("-----Relatórios------");
 			System.out.println("1.Saldo");
 			System.out.println("2.Relatório de Tributação da Conta Corrente:");
 			System.out.println("3.Relatório de Rendimento da Poupança:");
 			System.out.println("4.Relatório de Número de Contas da Agência");
-			System.out.println("5.Relatórios com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
+			System.out.println("5.Relatórios com as informações de cliente (Nome,CPF,Agência)");
 			System.out.println("6.Relatório com valor total do Capital armazenado no banco");
 			System.out.println("7.Voltar");
 			System.out.println("---------------------");
