@@ -1,9 +1,9 @@
 package cliente;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 	private String cpf;
 	private String senha;
-	
+	private String nome;
 	
 	
 	public Cliente() {
@@ -19,14 +19,35 @@ public class Cliente {
 	public String getCpf() {
 		return cpf;
 	}
+	
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
 	public String getSenha() {
 		return senha;
 	}
+	
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}	
+	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	@Override
+	public int compareTo(Cliente c) {
+		int compare = this.nome.compareTo(c.getNome());
+		
+		if(compare == 0) {
+			compare = this.cpf.compareTo(c.getCpf());
+		}
+		
+		return compare;
+	}
 }

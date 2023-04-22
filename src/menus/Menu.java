@@ -21,7 +21,7 @@ public class Menu {
 			System.out.println("1.Movimentação na Conta");
 			System.out.println("2.Relatórios");
 			System.out.println("0.Sair");
-			System.out.println("-----------------------");
+			System.out.println("---------------");
 			System.out.println("Digite o numero da sua escolha: ");
 			
 			opcEntrada = sc.next();
@@ -58,8 +58,8 @@ public class Menu {
 			System.out.println("2.Depósito");
 			System.out.println("3.Transferência para outra conta");
 			System.out.println("4.Extrato da Conta");
-			System.out.println("5.Voltar");
-			System.out.println("6.Seguro Vida");
+			System.out.println("5.Seguro Vida");
+			System.out.println("6.Voltar");
 			System.out.println("--------------------------------");
 			System.out.println("Digite o numero da sua escolha: ");
 			
@@ -81,9 +81,9 @@ public class Menu {
 				case 4: 
 					return 4;
 				case 5:
-					break;
+					return 5;
 				case 6:
-					return 6;
+					break;
 				default: 
 					System.out.println("Entrada inválida. \nTente de novo.");
 					try {
@@ -95,9 +95,9 @@ public class Menu {
 					}
 			}
 			
-		} while(opc != 5);
+		} while(opc != 6);
 		
-		return 5;
+		return 6;
 	}
 	
 	public int abrirMenuClienteRelatorios() {
@@ -158,7 +158,8 @@ public class Menu {
 			System.out.println("2.Depósito");
 			System.out.println("3.Transferência para outra conta");
 			System.out.println("4.Extrato da Conta");
-			System.out.println("5.Voltar");
+			System.out.println("5.Seguro Vida");
+			System.out.println("6.Voltar");
 			System.out.println("--------------------------------");
 			System.out.println("Digite o numero da sua escolha: ");
 
@@ -180,6 +181,8 @@ public class Menu {
 				case 4: 
 					return 4;
 				case 5:
+					return 5;
+				case 6:
 					break;
 				default: 
 					System.out.println("Entrada inválida. \nTente de novo.");
@@ -192,9 +195,9 @@ public class Menu {
 					}
 			}
 			
-		} while(opc != 5);
+		} while(opc != 6);
 		
-		return 5;
+		return 6;
 	}
 	
 	public int abrirMenuGerenteRelatorios() {
@@ -259,7 +262,7 @@ public class Menu {
 			System.out.println("2.Relatório de Tributação da Conta Corrente:");
 			System.out.println("3.Relatório de Rendimento da Poupança:");
 			System.out.println("4.Relatório de Número de Contas da Agência");
-			System.out.println("5.Relatórios com as informações de Nome e CPF");
+			System.out.println("5.Relatórios com as informações de cliente (Nome,CPF,Agência)");
 			System.out.println("6.Voltar");
 			System.out.println("---------------------");
 
@@ -305,12 +308,12 @@ public class Menu {
 		int opc;
 
 		do {
-			System.out.println("-----------Relatórios-------------");
+			System.out.println("-----Relatórios------");
 			System.out.println("1.Saldo");
 			System.out.println("2.Relatório de Tributação da Conta Corrente:");
 			System.out.println("3.Relatório de Rendimento da Poupança:");
 			System.out.println("4.Relatório de Número de Contas da Agência");
-			System.out.println("5.Relatórios com as informações de Nome, CPF e Agência de todos os clientes do sistema em ordem alfabética");
+			System.out.println("5.Relatórios com as informações de cliente (Nome,CPF,Agência)");
 			System.out.println("6.Relatório com valor total do Capital armazenado no banco");
 			System.out.println("7.Voltar");
 			System.out.println("---------------------");

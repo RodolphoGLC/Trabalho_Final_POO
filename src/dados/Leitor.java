@@ -35,6 +35,7 @@ public class Leitor {
 				Cliente c = new Cliente();
 				c.setCpf(lista.get(0));
 				c.setSenha(lista.get(1));
+				c.setNome(lista.get(2));
 				listaCliente.add(c);
 			}
 			else
