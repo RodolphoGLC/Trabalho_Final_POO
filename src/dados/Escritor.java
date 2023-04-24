@@ -184,36 +184,49 @@ public class Escritor {
 		Scanner sc = new Scanner(System.in);
 		//Verificar se a conta possui seguro vida
 		String verificar = conta.getSv();
-		int continua = 1;
 		
 		if(verificar.equals("sv")) {
 			System.out.println("Você já possui seguro de vida");
-		}
-		else {
-			System.out.println("Deseja contatar um seguro de vida?\n  1 - Sim\n  2 - Não");
-			int seguro = sc.nextInt();
-			if(seguro == 1) {
-				System.out.println("Qual valor você deseja contratar para seguro");
-				double valor = sc.nextDouble();
-					if(valor > 0 && conta.getSaldo() > valor*0.2) {
-						conta.setSv("sv");
-						conta.setTributoSeguro(valor*0.2);
-						conta.setSaldo(conta.getSaldo() - (valor*0.2));
-						String textoSV = conta.getCpfTitular() + " você criou um seguro de vida";
-						System.out.println(textoSV);
-						try {
-							escreverRelatorio(textoSV,"SV_");
-						} catch (IOException e) {
-							e.printStackTrace();
+		} else {
+			String opcEntrada;
+			int opcSeguro = 3;
+			do {
+				System.out.println("Deseja contatar um seguro de vida?\n  1 - Sim\n  2 - Não");
+				opcEntrada = sc.next();
+				
+				try {
+					//para evitar erro se o usuario entrar com algo que não seja int
+					opcSeguro = Integer.parseInt(opcEntrada);
+				} catch(Exception e) {
+					opcSeguro = 3;
+				}
+				
+				if(opcSeguro == 1) {
+					System.out.println("Qual valor você deseja contratar para seguro");
+					double valor = sc.nextDouble();
+						if(valor > 0 && conta.getSaldo() > valor*0.2) {
+							conta.setSv("sv");
+							conta.setTributoSeguro(valor*0.2);
+							conta.setSaldo(conta.getSaldo() - (valor*0.2));
+							String textoSV = conta.getCpfTitular() + " você criou um seguro de vida";
+							System.out.println(textoSV);
+							try {
+								escreverRelatorio(textoSV,"SV_");
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
 						}
-					}
-					else {
-						System.out.println("Não é possivel contratar o seguro de vida");
-					}
-			}
-			else {
-				System.out.println("Tudo bem, espero que na próxima você queira contratar");
-			}
+						else {
+							System.out.println("Não é possivel contratar o seguro de vida");
+						}
+				}
+				else if(opcSeguro == 2) {
+					System.out.println("Tudo bem, espero que na próxima você queira contratar");
+				} else {
+					System.out.println("Entrada inválida. \nTente novamente\n");
+				}
+			} while(opcSeguro < 1 || opcSeguro > 2 );
+			
 		}
 	}
 	
