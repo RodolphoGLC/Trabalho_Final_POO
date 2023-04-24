@@ -139,7 +139,7 @@ public abstract class Conta {
 	}
 	
 	public void transferir (Conta contaDestino, double valor){
-		if(this.saldo > valor && valor > 0){
+		if(this.saldo >= valor && valor > 0){
 			System.out.println("Transferência concluída!");
 			this.saldo -= valor;
 			contaDestino.saldo += valor;
@@ -192,7 +192,7 @@ public abstract class Conta {
 		extrato += "------------------------------------------------------------\n";
 		
 		Escritor.imprimeRelatorio(extrato);
-		
+		Escritor.escreverRelatorio(extrato,"REX_");
 	}
 
 }
