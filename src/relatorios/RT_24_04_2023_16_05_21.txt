@@ -1,0 +1,12 @@
+---------------------------------------------------
+	    Relatório de Tributação
+---------------------------------------------------
+1.Valor total gasto em operações: R$ 0,70
+	a.Total de saques/depositos: 5
+	b.Total de transferências: 1
+	c.Tributação do seguro: 100.0
+
+2.Para cada saque será cobrado o valor de R$0.10
+3.Para cada depósito será cobrado o valor de R$0.10
+4.Para cada transferência será cobrado o valor de R$0.20
+---------------------------------------------------

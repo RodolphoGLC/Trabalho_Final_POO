@@ -18,6 +18,7 @@ import conta.Conta;
 import conta.ContaCorrente;
 import conta.ContaPoupanca;
 import conta.Movimentacao;
+import menus.Menu;
 
 public class Escritor {
 	
@@ -71,7 +72,7 @@ public class Escritor {
 						  + "\n\tb.Total de transferências: " + conta.getQtdTransferencia();
 		
 		if(conta.getSv().equals("sv")) {
-			textoTributacao	+= "\n\tc.Tributação do seguro: " + conta.getTributoSeguro();
+			textoTributacao	+= "\n\tc.Tributação do seguro: R$ " + df.format(conta.getTributoSeguro());
 		}
 		
 		textoTributacao	+= "\n\n2.Para cada saque será cobrado o valor de R$0.10\n" +
@@ -83,6 +84,7 @@ public class Escritor {
 	}
 	
 	public static void relatorioRendimento(ContaPoupanca conta) throws IOException {
+		String entrada;
 		double dias, rendimento;
 		String textoRendimento = "---------------------------------------------------\n" 
 				+ "\t    Relatório de Rendimento\n";
@@ -91,7 +93,14 @@ public class Escritor {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Qual a quantidade de dias para a qual o cálculo deverá ser feito?");
-		dias = sc.nextDouble();
+		entrada = sc.next();
+		
+		try {
+			dias = Double.parseDouble(entrada);
+		} catch (Exception e) {
+			dias = 0.0;
+		}
+		
 		dias = Math.floor(dias/30);
 		
 		rendimento = dias * 0.1;
@@ -202,8 +211,8 @@ public class Escritor {
 				}
 				
 				if(opcSeguro == 1) {
-					System.out.println("Qual valor você deseja contratar para seguro");
-					double valor = sc.nextDouble();
+					Menu menu = new Menu();
+					double valor = menu.lerValor("contratado");
 						if(valor > 0 && conta.getSaldo() > valor*0.2) {
 							conta.setSv("sv");
 							conta.setTributoSeguro(valor*0.2);

@@ -91,9 +91,9 @@ public abstract class Conta {
 	}
 	
 	public void sacar(double valor) {
-		if (valor > this.saldo) {
+		if (valor > this.saldo || valor == 0 ) {
 			//Caso tiver que escrever a tentativa de saque com saldo insuficiente terá que modificar
-			System.out.println("Saque indisponível, valor insuficiente!");
+			System.out.println("Saque indisponível.");
 		} else {
 			this.saldo -= valor;
 			System.out.println("Saque efetuado com sucesso!");

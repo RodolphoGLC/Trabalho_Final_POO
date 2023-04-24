@@ -355,4 +355,22 @@ public class Menu {
 
 		return 7;
 	}
+	
+	public Double lerValor(String textoMoviementacao) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Digite o valor a ser " + textoMoviementacao + ":");
+		
+		String entradaString = sc.next();
+		Double valor;
+		
+		try {
+			valor = Double.parseDouble(entradaString);
+		} catch (Exception e) {
+			valor = 0.0;
+		}
+		
+		return valor;
+	}
+	
   }

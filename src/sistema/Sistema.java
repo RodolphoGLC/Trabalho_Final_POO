@@ -79,15 +79,13 @@ public class Sistema {
 						switch(opcMenu) {
 						case 1: 
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser sacado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("sacado");
 							conta.sacar(valor);
 							Escritor.espacamentoDepois();
 							break;
 						case 2: 
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser depositado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("depositado");
 							conta.depositar(valor);
 							Escritor.espacamentoDepois();
 							break;
@@ -97,8 +95,7 @@ public class Sistema {
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
 							if(contaTransferencia != null) {
-								System.out.println("Qual valor desejado para realizar a transferência?");
-							    valor = sc.nextDouble();
+							    valor = menu.lerValor("transferido");
 								conta.transferir(contaTransferencia, valor);
 							}else {
 								System.out.println("Conta não encontrada.");
@@ -159,15 +156,13 @@ public class Sistema {
 						switch(opcMenu) {
 						case 1: 
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser sacado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("sacado");
 							conta.sacar(valor);
 							Escritor.espacamentoDepois();
 							break;
 						case 2: 
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser depositado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("depositado");
 							conta.depositar(valor);
 							Escritor.espacamentoDepois();
 							break;
@@ -177,8 +172,7 @@ public class Sistema {
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
 							if(contaTransferencia != null) {
-								System.out.println("Qual valor desejado para realizar a transferência?");
-							    valor = sc.nextDouble();
+							    valor = menu.lerValor("transferido");
 								conta.transferir(contaTransferencia, valor);
 							}else {
 								System.out.println("Conta não encontrada.");
@@ -242,15 +236,13 @@ public class Sistema {
 						switch(opcMenu) {
 						case 1:
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser sacado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("sacado");
 							conta.sacar(valor);
 							Escritor.espacamentoDepois();
 							break;
 						case 2:
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser depositado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("depositado");
 							conta.depositar(valor);
 							Escritor.espacamentoDepois();
 							break;
@@ -260,8 +252,7 @@ public class Sistema {
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
 							if(contaTransferencia != null) {
-								System.out.println("Qual valor desejado para realizar a transferência?");
-							    valor = sc.nextDouble();
+							    valor = menu.lerValor("transferido");
 								conta.transferir(contaTransferencia, valor);
 							}else {
 								System.out.println("Conta não encontrada.");
@@ -329,15 +320,13 @@ public class Sistema {
 						switch (opcMenu) {
 						case 1:
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser sacado:");
-							valor = sc.nextDouble();
+							valor = menu.lerValor("sacado");
 							conta.sacar(valor);
 							Escritor.espacamentoDepois();
 							break;
 						case 2:
 							Escritor.espacamentoAntes();
-							System.out.println("Digite o valor a ser depositado:");
-						    valor = sc.nextDouble();
+							valor = menu.lerValor("depositado");
 							conta.depositar(valor);
 							Escritor.espacamentoDepois();
 							break;
@@ -347,8 +336,7 @@ public class Sistema {
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
 							if(contaTransferencia != null) {
-								System.out.println("Qual valor desejado para realizar a transferência?");
-							    valor = sc.nextDouble();
+							    valor = menu.lerValor("transferido");
 								conta.transferir(contaTransferencia, valor);
 							}else {
 								System.out.println("Conta não encontrada.");
