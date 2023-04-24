@@ -178,6 +178,7 @@ public class Sistema {
 								System.out.println("Conta não encontrada.");
 							}
 							Escritor.espacamentoDepois();
+							break;
 						case 4: 
 							System.out.println("Extrato");
 							conta.extratoConta();
