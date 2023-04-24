@@ -247,4 +247,15 @@ public class Escritor {
 		}
 		System.out.println("\n\n\n\n\n\n\n");
 	}
+	
+	public static void espacamentoAntes() throws InterruptedException {
+		System.out.println("\n");
+		System.out.println("----------------------------------------------------");
+	}
+	
+	public static void espacamentoDepois() throws InterruptedException {
+		System.out.println("----------------------------------------------------");
+		System.out.println("\n");
+		Thread.sleep(500);
+	}
 }

@@ -19,7 +19,7 @@ import menus.Menu;
 
 
 public class Sistema {
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 
 		//criação das listas para armazaenamento dos dados
 		List<Cliente> listaCliente = new ArrayList<>();
@@ -78,19 +78,24 @@ public class Sistema {
 						opcMenu = menu.abrirMenuClienteMovimentacao();
 						switch(opcMenu) {
 						case 1: 
-							System.out.println("Digite o valor a ser sacado: ");
+							Escritor.espacamentoAntes();
+							System.out.println("Digite o valor a ser sacado:");
 							valor = sc.nextDouble();
 							conta.sacar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 2: 
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser depositado:");
 							valor = sc.nextDouble();
 							conta.depositar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 3: 
+							Escritor.espacamentoAntes();
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
-							String CPFtransferencia = sc.next();
-							Conta contaTransferencia = listaConta.get(CPFtransferencia);
+							String CPFTransferencia = sc.next();
+							Conta contaTransferencia = listaConta.get(CPFTransferencia);
 							if(contaTransferencia != null) {
 								System.out.println("Qual valor desejado para realizar a transferência?");
 							    valor = sc.nextDouble();
@@ -98,7 +103,7 @@ public class Sistema {
 							}else {
 								System.out.println("Conta não encontrada.");
 							}
-							
+							Escritor.espacamentoDepois();
 							break;
 						case 4: 
 							System.out.println("Extrato");
@@ -106,7 +111,11 @@ public class Sistema {
 							break;
 						case 5:
 							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar(conta);
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								Escritor.seguroVidaContratar(conta);
+							} else {
+								System.out.println("Esta conta não é uma conta corrente");
+							}
 							break;
 						}
 						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
@@ -149,16 +158,21 @@ public class Sistema {
 						opcMenu = menu.abrirMenuFuncionarioMovimentacao();
 						switch(opcMenu) {
 						case 1: 
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser sacado:");
 							valor = sc.nextDouble();
 							conta.sacar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 2: 
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser depositado:");
 							valor = sc.nextDouble();
 							conta.depositar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 3: 
+							Escritor.espacamentoAntes();
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
@@ -169,14 +183,18 @@ public class Sistema {
 							}else {
 								System.out.println("Conta não encontrada.");
 							}
-							break;
+							Escritor.espacamentoDepois();
 						case 4: 
 							System.out.println("Extrato");
 							conta.extratoConta();
 							break;
 						case 5:
 							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar(conta);
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								Escritor.seguroVidaContratar(conta);
+							} else {
+								System.out.println("Esta conta não é uma conta corrente");
+							}
 							break;
 						}
 						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
@@ -223,16 +241,21 @@ public class Sistema {
 						opcMenu = menu.abrirMenuFuncionarioMovimentacao (); 
 						switch(opcMenu) {
 						case 1:
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser sacado:");
 							valor = sc.nextDouble();
 							conta.sacar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 2:
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser depositado:");
 							valor = sc.nextDouble();
 							conta.depositar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 3:
+							Escritor.espacamentoAntes();
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
@@ -243,13 +266,18 @@ public class Sistema {
 							}else {
 								System.out.println("Conta não encontrada.");
 							}
+							Escritor.espacamentoDepois();
 							break;
 						case 4:
 							conta.extratoConta();
 							break;
 						case 5:
 							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar(conta);
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								Escritor.seguroVidaContratar(conta);
+							} else {
+								System.out.println("Esta conta não é uma conta corrente");
+							}
 							break;
 						}
 						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
@@ -300,16 +328,21 @@ public class Sistema {
 
 						switch (opcMenu) {
 						case 1:
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser sacado:");
 							valor = sc.nextDouble();
 							conta.sacar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 2:
+							Escritor.espacamentoAntes();
 							System.out.println("Digite o valor a ser depositado:");
 						    valor = sc.nextDouble();
 							conta.depositar(valor);
+							Escritor.espacamentoDepois();
 							break;
 						case 3:
+							Escritor.espacamentoAntes();
 							System.out.println("Informe o CPF da conta da qual a transferência será realizada: ");
 							String CPFTransferencia = sc.next();
 							Conta contaTransferencia = listaConta.get(CPFTransferencia);
@@ -320,13 +353,20 @@ public class Sistema {
 							}else {
 								System.out.println("Conta não encontrada.");
 							}
+							Escritor.espacamentoDepois();
 							break;
 						case 4: 
 							conta.extratoConta();
 							break;
 						case 5:
-							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar((ContaCorrente)conta);
+							Escritor.espacamentoAntes();
+							System.out.println("Seguro de Vida \n");
+							if(conta.getTipo() == EnumConta.CONTACORRENTE){
+								Escritor.seguroVidaContratar(conta);
+							} else {
+								System.out.println("Esta conta não é uma conta corrente");
+							}
+							Escritor.espacamentoDepois();
 							break;
 						}
 						Escritor.salvarContas(pathDados + "conta.txt", listaConta);	
