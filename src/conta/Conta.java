@@ -1,7 +1,13 @@
 package conta;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 import dados.Escritor;
 import dados.Leitor;
 import enums.EnumConta;
@@ -156,8 +162,37 @@ public abstract class Conta {
 		}
 	}
 	
-	public void extratoConta() {
-		//Instanciar!!
+	public void extratoConta() throws IOException {
+		//lendo arquivo de movimentacoes e gravando em uma lista
+		String path = "src/dados/movimentacoes.txt";
+		List<String> movimentacoes = Leitor.lerMovimentacao(path);
+		//criando uma lista de string pra cada linha do arquivo
+		List<List<String>> listaMovimentacoes = new ArrayList<>();
+		for(String s : movimentacoes) {
+			listaMovimentacoes.add(Arrays.asList(s.split(" - ")));
+		}
+		
+		String extrato = ("------------------------------------------------------------\n" 
+				+ "\t\t\tExatrato\n"
+				+ "------------------------------------------------------------\n"
+				+ "Data\t\t Hora\t\t\tOperação\n"
+				+ "------------------------------------------------------------\n");
+		
+		for(List<String> l : listaMovimentacoes) {
+			
+			
+			if(l.get(0).equals(this.cpfTitular)) {
+				
+				extrato += (String.format("%s",l.get(l.size() - 2)) +
+								   String.format("%1$15s", l.get(l.size() - 1)) + 
+								   String.format("%1$30s", l.get(1))) + "\n";
+			}
+		}
+		
+		extrato += "------------------------------------------------------------\n";
+		
+		Escritor.imprimeRelatorio(extrato);
+		
 	}
 
 }

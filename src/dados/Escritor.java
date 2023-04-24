@@ -186,11 +186,7 @@ public class Escritor {
 		String verificar = conta.getSv();
 		int continua = 1;
 		
-		if(verificar == "sv") {
-			continua = 0;
-		}
-		
-		if(continua == 1) {
+		if(verificar.equals("sv")) {
 			System.out.println("Você já possui seguro de vida");
 		}
 		else {
@@ -241,7 +237,7 @@ public class Escritor {
 		escritor.close();
 	}
 	
-	private static void imprimeRelatorio(String textoRelatorio) {
+	public static void imprimeRelatorio(String textoRelatorio) {
 		System.out.println("\n\n\n\n\n\n\n");
 		System.out.println(textoRelatorio);
 		try {

@@ -102,6 +102,8 @@ public class Sistema {
 							break;
 						case 4: 
 							System.out.println("Extrato");
+							conta.extratoConta();
+							break;
 						case 5:
 							System.out.println("Seguro de Vida");
 							Escritor.seguroVidaContratar(conta);
@@ -170,9 +172,11 @@ public class Sistema {
 							break;
 						case 4: 
 							System.out.println("Extrato");
+							conta.extratoConta();
+							break;
 						case 5:
 							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar((ContaCorrente)conta);
+							Escritor.seguroVidaContratar(conta);
 							break;
 						}
 						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
@@ -241,10 +245,11 @@ public class Sistema {
 							}
 							break;
 						case 4:
-							System.out.println("Extrato da conta do cliente");
+							conta.extratoConta();
+							break;
 						case 5:
 							System.out.println("Seguro de Vida");
-							Escritor.seguroVidaContratar((ContaCorrente)conta);
+							Escritor.seguroVidaContratar(conta);
 							break;
 						}
 						Escritor.salvarContas(pathDados + "conta.txt", listaConta);
@@ -317,7 +322,7 @@ public class Sistema {
 							}
 							break;
 						case 4: 
-							System.out.println("Extrato da conta do cliente");
+							conta.extratoConta();
 							break;
 						case 5:
 							System.out.println("Seguro de Vida");

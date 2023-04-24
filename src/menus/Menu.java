@@ -259,8 +259,8 @@ public class Menu {
 		do {
 			System.out.println("-----Relatórios------");
 			System.out.println("1.Saldo");
-			System.out.println("2.Relatório de Tributação da Conta Corrente:");
-			System.out.println("3.Relatório de Rendimento da Poupança:");
+			System.out.println("2.Relatório de Tributação da Conta Corrente");
+			System.out.println("3.Relatório de Rendimento da Poupança");
 			System.out.println("4.Relatório de Número de Contas da Agência");
 			System.out.println("5.Relatórios com as informações de cliente (Nome,CPF,Agência)");
 			System.out.println("6.Voltar");
@@ -310,8 +310,8 @@ public class Menu {
 		do {
 			System.out.println("-----Relatórios------");
 			System.out.println("1.Saldo");
-			System.out.println("2.Relatório de Tributação da Conta Corrente:");
-			System.out.println("3.Relatório de Rendimento da Poupança:");
+			System.out.println("2.Relatório de Tributação da Conta Corrente");
+			System.out.println("3.Relatório de Rendimento da Poupança");
 			System.out.println("4.Relatório de Número de Contas da Agência");
 			System.out.println("5.Relatórios com as informações de cliente (Nome,CPF,Agência)");
 			System.out.println("6.Relatório com valor total do Capital armazenado no banco");
